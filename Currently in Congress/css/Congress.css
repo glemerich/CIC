@@ -1,0 +1,10 @@
+.navbar {
+    min-width: 1200px;
+}
+.main-content {
+    margin-top: 132px;
+}
+.header {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
