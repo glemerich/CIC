@@ -1,0 +1,25 @@
+.navbar {
+    background-color: #8f474a;
+}
+
+.navbar .navbar-brand img {
+    width: 180px;
+}
+.navbar .nav-item .nav-link {
+    color: #d8d7d5;
+}
+.nav-pills {
+    --bs-nav-pills-link-active-bg: #a55b5d;
+}
+
+.table-responsive {
+    max-height: 450px;
+    overflow: scroll;
+}
+
+table.bills thead tr:nth-child(1) th {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
