@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currently in Congress</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <style>
+        /* Add custom CSS styles for table cells */
+        td {
+            padding: 10px; /* Adjust the padding to increase or decrease spacing */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            flex: 1;
+            margin-right: 5px; /* Adjust the margin to increase or decrease space between buttons */
+        }
+    </style>
+
+    <style>
+        :root, [data-bs-theme=light] {
+            --bs-nav-pills-link-active-bg: #8f474a;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/Congress.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+        <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav nav-pills me-4 mb-2">
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="bills.html">Bills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="representatives.html">Representatives</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" aria-current="page" href="Admin.html">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fs-4" href="mods.html">Mods</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="login.html">Login</a>
+                </li>
+            
+            </ul>
+        </div>    
+    </div>
+</nav>
+
+<div>
+    <h1 class="header">Moderator Page</h1>
+</div>
+
+<div>
+    <h2>Reported Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Reported User:</th>
+                <th>Reported By:</th>
+                <th>Reason for Reported:</th>
+                <th>Comment that is Being Reported:</th>
+                <th>Decision:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>MoMoney</td>
+                <td>Donladtrump420</td>
+                <td>Spamming Comments</td>
+                <td>"Your orange Your orangeYour orangeYour orangeYour orangeYour orangeYour orangeYour orangeYour orangeYour orange."</td>
+                <td class="button-container">
+                    <!-- Button 1 -->
+                    <button class="button">Delete Comment</button>
+                    <!-- Button 2 -->
+                    <button class="button">Ignore Report</button>
+                    <button class="button">Send to Admin</button>
+                </td>
+            </tr>
+            <tr>
+                <td>joedoe</td>
+                <td>jilldoe</td>
+                <td>Hate Speech</td>
+                <td>"I don't like this bill because it can hurt the economy."</td>
+                <td class="button-container">
+                    <!-- Button 1 -->
+                    <button class="button">Delete Comment</button>
+                    <!-- Button 2 -->
+                    <button class="button">Ignore Report</button>
+                    <button class="button">Send to Admin</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="spacer"></div>
+
+<script src="assets/js/bootstrap.js"></script>
+</body>
+</html>
