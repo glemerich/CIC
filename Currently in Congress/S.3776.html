@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Currently in Congress</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+    
+        <style>
+            :root, [data-bs-theme=light] {
+                --bs-nav-pills-link-active-bg: #8f474a;
+            }
+        </style>
+        <link rel="stylesheet" href="assets/css/Congress.css">
+    </head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav nav-pills me-4 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="bills.html">Bills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4"  href="representatives.html">Representatives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="Admin.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+    </nav>
+    <div class="container text-center main-content">
+        <h1 class="mt-5">S.3776 - Coast Guard Academy Safe-to-Report Act</h1>
+        <hr>
+
+        <p><strong>Sponsor:</strong> Sen. Richard Blumenthal (D-CT)</p>
+        <p><strong>Bill Title:</strong> A bill to establish a safe-to-report policy within the Coast Guard, and for other purposes.</p>
+        <p><strong>Introduced Date:</strong> 2024-02-08</p>
+        <p><strong>Total Cosponsors:</strong> 5; <strong>By Party:</strong> R: 3, D: 2</p>
+        <p><strong>Latest Major Action:</strong> Read twice and referred to the Committee on Commerce, Science, and Transportation. <strong> Date:</strong> 2024-02-08</p></p>
+        <p>
+        <p><strong>More Info:</strong> <a href="https://www.congress.gov/bill/118th-congress/senate-bill/3776" target="_blank">Congress.gov</a></p>
+        <hr>
+
+     
+     <!-- Comments Section -->
+     <h2>Comments</h2>
+     <div id="comments-section">
+         <!-- Existing comments -->
+         <div class="comment" id="comment-1">
+             <p><strong>User A</strong>: Great Bill</p>
+             <button id="like-1" onclick="likeComment(1)">Like</button>
+             <span id="like-count-1">0</span>
+             <button onclick="toggleReplyForm(1)">Reply</button>
+             <div id="reply-form-1" style="display: none;">
+                 <form onsubmit="postReply(1, null); return false;">
+                     <textarea id="reply-text-1" placeholder="Write your reply here..."></textarea>
+                     <button type="submit">Post Reply</button>
+                 </form>
+             </div>
+             <div class="replies" id="replies-1"></div>
+         </div>
+         <div class="comment" id="comment-2">
+             <p><strong>User B</strong>: Interesting Idea</p>
+             <button id="like-2" onclick="likeComment(2)">Like</button>
+             <span id="like-count-2">0</span>
+             <button onclick="toggleReplyForm(2)">Reply</button>
+             <div id="reply-form-2" style="display: none;">
+                 <form onsubmit="postReply(2, null); return false;">
+                     <textarea id="reply-text-2" placeholder="Write your reply here..."></textarea>
+                     <button type="submit">Post Reply</button>
+                 </form>
+             </div>
+             <div class="replies" id="replies-2"></div>
+         </div>
+     </div>
+     
+
+
+    <!-- New comment form -->
+    <form id="comment-form" onsubmit="postComment(); return false;">
+        <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    </div>
+</div>
+<script src="assets/js/comments.js"></script>
+
+</body>
+</html>

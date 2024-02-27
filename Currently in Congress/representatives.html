@@ -79,7 +79,7 @@
                 <a href="tammy-baldwin.html">Tammy Baldwin</a>
             </div>
             <div class="col-2">
-                Democrat
+                D
             </div>
             <div class="col-2">
                 Senate Democratic Caucus Secretary
@@ -103,7 +103,7 @@
                 <a href="alma-adams.html">Alma Adams</a> 
             </div>
             <div class="col-2">
-                Democrat
+                D
             </div>
             <div class="col-2">
                 N/A
@@ -120,6 +120,49 @@
         </div>
     </div>
 
-    <script src="js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script>
+        // Fetch representative data from the API
+        fetch('https://api.propublica.org/congress/v1/118/house/members.json', {
+            method: 'GET',
+            headers: {
+                'X-API-Key': 'nK1MVaOhD4iNGxcfKHn8ooks0QvxBGJBvjNDPcv0'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const members = data.results[0].members;
+            const tableBody = document.querySelector('.main-content .row:last-of-type');
+            
+            // Populate table rows with representative data
+            members.forEach(member => {
+                const newRow = document.createElement('div');
+                newRow.classList.add('row', 'align-items-top', 'fs-4');
+                newRow.innerHTML = `
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                        <a href="${member.id}.html">${member.first_name} ${member.last_name}</a>
+                    </div>
+                    <div class="col-2">${member.party}</div>
+                    <div class="col-2">${member.leadership_role ? member.leadership_role : 'N/A'}</div>
+                    <div class="col-2">${member.next_election}</div>
+                    <div class="col-2">House</div>
+                    <div class="col-1"></div>
+                    <hr>
+                `;
+                tableBody.parentNode.insertBefore(newRow, tableBody);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+
+    <script src="assets/js/bootstrap.js"></script>
 </body>
 </html>

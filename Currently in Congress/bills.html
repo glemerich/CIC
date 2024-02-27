@@ -48,117 +48,56 @@
     <div class="table-responsive">
         <table class="bills w-100">
             <thead>
-                <tr class="fs-2">
-                    <th class="cic__header">Bill Title</th>
-                    <th>Bill Number</th>
-                    <th>Bill Sponser(s)</th>
-                    <th>Date Introduced</th>
-                    <th>Chamber</th>
-                </tr>
+            <tr class="fs-2">
+                <th class="cic__header">Bill Title</th>
+                <th>Bill Number</th>
+                <th>Bill Sponsor(s)</th>
+                <th>Date Introduced</th>
+                <th>Chamber</th>
+            </tr>
             </thead>
-            <tbody>
-                <tr class="fs-4">
-                    <td>Help America Vote Act of 2002</td>
-                    <td>H.R. 7389</td>
-                    <td>Mary Gay Scanlon, D, PA</td>
-                    <td>2024-02-15</td>
-                    <td>House</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
-                <tr class="fs-4">
-                    <td>This is a title</td>
-                    <td>HR-1234</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Date</td>
-                    <td>Chamber</td>
-                </tr>
+            <tbody id="billData">
+                <!-- Bills data will be populated here -->
             </tbody>
         </table>
     </div>
-
-    <script src="js/bootstrap.js"></script>
-</body>
-</html>
+    
+    <script src="assets/js/bootstrap.js"></script>
+    <script>
+        // Fetch bill data from the ProPublica Congress API
+        fetch('https://api.propublica.org/congress/v1/118/house/bills/introduced.json', {
+            method: 'GET',
+            headers: {
+                "X-API-Key": "nK1MVaOhD4iNGxcfKHn8ooks0QvxBGJBvjNDPcv0"
+            }
+        })
+        .then(response => {
+            // Check if the response is successful
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const bills = data.results[0].bills;
+            const tableBody = document.getElementById('billData');
+            tableBody.innerHTML = ''; // Clear the table body
+    
+            // Iterate through each bill and create a table row
+            bills.forEach(bill => {
+                let row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${bill.title}</td>
+                    <td><a href="${bill.number}.html">${bill.number}</a></td>
+                    <td>${bill.sponsor_title} ${bill.sponsor_name}, ${bill.sponsor_party}, ${bill.sponsor_state}</td>
+                    <td>${bill.introduced_date}</td>
+                    <td>House</td>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+    </body>
+    </html>

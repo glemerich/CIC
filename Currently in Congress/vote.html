@@ -87,16 +87,18 @@
             })
             .then(data => {
                 const votes = data.results.votes;
+                var votepage;
                 let tableBody = document.getElementById('voteResults').querySelector('tbody');
                 tableBody.innerHTML = ''; // Clear the table body
-
+                
                 // Iterate through each vote record and create a table row
                 votes.forEach(vote => {
                     let row = tableBody.insertRow();
-
+                    
+                    let votepage = `<a href="${vote.bill.number}.html">${vote.bill.number}</a>`;
                     // Insert cells for each piece of vote data
                     row.insertCell(0).textContent = vote.chamber;
-                    row.insertCell(1).textContent = vote.bill.number;
+                    row.insertCell(1).innerHTML = votepage;
                     row.insertCell(2).textContent = vote.question;
                     row.insertCell(3).textContent = `Yes: ${vote.democratic.yes}, No: ${vote.democratic.no}`;
                     row.insertCell(4).textContent = `Yes: ${vote.republican.yes}, No: ${vote.republican.no}`;
@@ -109,7 +111,7 @@
             });
     </script>
 
-    <script src="js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
 </body>
 
 </html>
