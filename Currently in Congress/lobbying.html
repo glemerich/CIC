@@ -6,10 +6,36 @@
     <title>Currently in Congress</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/Congress.css">
-</head>
+     <style>
+        .navbar {
+            min-width: 1200px;
+        }
 
+        .header {
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+            margin-top: 60px; /* Adjust the margin-top as needed */
+        }
+
+        /* Styling for the table */
+        table {
+            width: 100%; /* Set the table width to 100% of its container */
+            border-collapse: collapse; /* Collapse table borders */
+        }
+
+        th, td {
+            padding: 8px; /* Add padding to table cells */
+            border: 1px solid black; /* Add border to table cells */
+            text-align: center; /* Center-align content in table cells */
+        }
+
+        .spacer {
+            margin: 40px;
+        }
+    </style>
+</head>
 <body>
-    
+   
     <nav class="navbar fixed-top bg-body-tertiary">
         <div class="container flex-nowrap">
             <a class="navbar-brand fs-1" text href="#">Currently in Congress</a>
@@ -24,7 +50,7 @@
                     <a class="nav-link fs-4" href="vote.html">Vote Records</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-4" href="lobbying.html">Lobbying</a>
+                    <a class="nav-link fs-4" href="lobbying.html">Admins</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fs-4" href="login.html">Login</a>
@@ -32,8 +58,111 @@
             </ul>
         </div>
     </nav>
-
     
+    <div>
+        <h1 class="header">Admins Page</h1>
+    </div>
+
+    <div>
+        <h2>Reported Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Reported User</th>
+                    <th>Reported By</th>
+                    <th>Reason for Reported</th>
+                    <th>Small info on why being reported</th>
+                    <th>Decision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SleepyJoe69</td>
+                    <td>Donladtrump420</td>
+                    <td>Foul Language</td>
+                    <td>Doesn't let me talk.</td>
+                    <td class="button-container">
+                        <!-- Button 1 -->
+                        <button class="button">Ban</button>
+                        <!-- Button 2 -->
+                        <button class="button">Ignore</button>
+                        <button class="button">Temp. Ban</button>
+                    </td>
+
+                    <tr>
+                        <td>johndoe</td>
+                        <td>jilldoe</td>
+                        <td>Hate speech</td>
+                        <td>N/A</td>
+                        <td class="button-container"><!-- Button 1 -->
+                            <button class="button">Ban</button>
+                            <!-- Button 2 -->
+                            <button class="button">Ignore</button>
+    
+                            <button class="button">Temp. Ban </button></td>
+                    </tr>
+                    <tr>
+                        <td>grogu333</td>
+                        <td>BotaFeta</td>
+                        <td>Spaming Comments</td>
+                        <td>N/A</td>
+                        <td class="button-container"><!-- Button 1 -->
+                            <button class="button">Ban</button>
+                            <!-- Button 2 -->
+                            <button class="button">Ignore</button>
+    
+                            <button class="button">Temp. Ban </button></td>
+                    </tr>
+                    <tr>
+                        <td>Crellina444</td>
+                        <td>Carturor</td>
+                        <td>Abuse of leadership power </td>
+                        <td>Detele mutiple comments in which doesnt violate the code of conduct of the website.</td>
+                        <td class="button-container"><!-- Button 1 -->
+                            <button class="button">Ban</button>
+                            <!-- Button 2 -->
+                            <button class="button">Ignore</button>
+    
+                            <button class="button">Temp. Ban </button></td>
+                    </tr>
+                </tr>
+             
+            </tbody>
+        </table>
+    </div>
+
+    <div class="spacer"></div>
+    
+    <div>
+        <h1>Mods for Hire</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Application</th>
+                    <th>Background Check</th>
+                    <th>Small info on why want to be a mod</th>
+                    <th>Decision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>aestheticxs</td>
+                    <td>aestheticxsapp.pdf</td>
+                    <td>aestheticxsBc.pdf</td>
+                    <td>make the community safe!</td>
+                    <td class="button-container">
+                        <!-- Button 1 -->
+                        <button class="button">Accept</button>
+                        <!-- Button 2 -->
+                        <button class="button">Decline</button>
+                        <button class="button">Waitlist</button>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
 
     <script src="js/bootstrap.js"></script>
 </body>
