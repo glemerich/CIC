@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Currently in Congress</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+    
+        <style>
+            :root, [data-bs-theme=light] {
+                --bs-nav-pills-link-active-bg: #8f474a;
+            }
+        </style>
+        <link rel="stylesheet" href="assets/css/Congress.css">
+    </head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav nav-pills me-4 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="bills.html">Bills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4"  href="representatives.html">Representatives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="Admin.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+    </nav>
+    <div class="container text-center main-content">
+        <h1 class="mt-5">H.R.5012 - SHINE for Autumn Act of 2023</h1>
+        <hr>
+
+        <p><strong>Sponsor:</strong> Rep. Young Kim (R-CA)</p>
+        <p><strong>Bill Title:</strong> To improve research and data collection on stillbirths, and for other purposes.</p>
+        <p><strong>Introduced Date:</strong> 2023-07-27</p>
+        <p><strong>Total Cosponsors:</strong> 81; <strong>By Party:</strong> D: 51, R: 30</p>
+        <p><strong>Latest Major Action:</strong> Referred to the Subcommittee on Health.</p>
+        <p><strong>Latest Major Action Date:</strong> 2023-07-28</p>
+        <p><strong>More Info:</strong> <a href="https://www.congress.gov/bill/118th-congress/house-bill/5012" target="_blank">Congress.gov</a></p>
+        <hr>
+
+
+     
+     <!-- Comments Section -->
+     <h2>Comments</h2>
+     <div id="comments-section">
+         <div class="comment" id="comment-1">
+             <button id="like-2" onclick="likeComment(2)">Like</button>
+             <span id="like-count-2">0</span>
+             <button onclick="toggleReplyForm(2)">Reply</button>
+             <div id="reply-form-2" style="display: none;">
+                 <form onsubmit="postReply(2, null); return false;">
+                     <textarea id="reply-text-2" placeholder="Write your reply here..."></textarea>
+                 </form>
+             </div>
+             <div class="replies" id="replies-2"></div>
+         </div>
+     </div>
+     
+
+
+    <!-- New comment form -->
+    <form id="comment-form" onsubmit="postComment(); return false;">
+        <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    </div>
+</div>
+<script src="assets/js/comments.js"></script>
+
+</body>
+</html>
