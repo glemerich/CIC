@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currently in Congress</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/Congress.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Currently in Congress</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+    
+        <style>
+            :root, [data-bs-theme=light] {
+                --bs-nav-pills-link-active-bg: #8f474a;
+            }
+        </style>
+        <link rel="stylesheet" href="assets/css/Congress.css">
+    </head>
 
 <body>
-
-    <nav class="navbar fixed-top bg-body-tertiary">
-        <div class="container flex-nowrap">
-            <a class="navbar-brand fs-1" text href="#">Currently in Congress</a>
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link fs-4" href="bills.html">Bills</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-4" href="representatives.html">Representatives</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-4" href="vote.html">Vote Records</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-4" href="lobbying.html">Lobbying</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-4" href="login.html">Login</a>
-                </li>
-            </ul>
+    
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav nav-pills me-4 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="bills.html">Bills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="Representatives.html">Representatives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fs-4" aria-current="page" href="#">Vote Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="lobbying.html">Lobbying</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>    
         </div>
     </nav>
 
