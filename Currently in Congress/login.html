@@ -14,6 +14,62 @@
         <link rel="stylesheet" href="assets/css/Congress.css">
     </head>
 
+    <style>
+        .login {
+        width: 500px;
+        overflow: hidden;
+        text-align: left;
+        position: absolute;
+        top: 25%;
+        bottom: 20%;
+        left: 30%;
+        right: 25%;
+        padding: 100px;
+        background: #8f474a;
+        border-radius: 15px;
+        }
+
+        label {
+            color: white;
+            font-size: 17px;
+        }
+
+        #Username {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 3px;
+            padding-left: 8px;
+        }
+
+        #Password {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 3px;
+            padding-left: 8px;
+
+        }
+
+        #log {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 17px;
+            padding-left: 7px;
+        }
+
+        span {
+            color: white;
+            font-size: 17px;
+        }
+
+        a {
+            float: middle;
+            background-color: #eafaf1;
+        }
+    </style>
+
 <body>
     
     <nav class="navbar navbar-expand-md">
@@ -45,6 +101,27 @@
     </nav>
 
     
+    <div class="login">
+        <form id="login" method="get" action="login.php">
+            <label><b>User Name
+            </b>
+            </label>
+            <input type="text" name="Username" id="Username" placeholder="Username">
+            <br><br>
+            <label><b>Password
+            </b>
+            </label>
+            <input type="Password" name="Pasword" id="Password" placeholder="Password">
+            <br><br>
+            <button type="Login">Login</button>
+            <p><a href="">Don't have an account? Click here to register!</a></li></p>
+            <br><br>
+            <input type="checkbox" id="check">
+            <span>Remember me</span>
+            <br><br>
+        </form>
+    </div>
+
 
     <script src="js/bootstrap.js"></script>
 </body>
