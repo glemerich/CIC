@@ -45,18 +45,18 @@
     </nav>
 
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-4 mx-4">
         <table class="bills w-100">
             <thead>
-            <tr class="fs-2">
-                <th class="cic__header">Bill Title</th>
-                <th>Bill Number</th>
-                <th>Bill Sponsor(s)</th>
-                <th>Date Introduced</th>
-                <th>Chamber</th>
+            <tr class="fs-3 px-5">
+                <th class="cic__header fw-medium">Bill Title</th>
+                <th class="fw-medium">Bill Number</th>
+                <th class="fw-medium">Bill Sponsor(s)</th>
+                <th class="fw-medium">Date Introduced</th>
+                <th class="fw-medium">Chamber</th>
             </tr>
             </thead>
-            <tbody id="billData">
+            <tbody class="table-group-divider" id="billData">
                 <!-- Bills data will be populated here -->
             </tbody>
         </table>
@@ -84,8 +84,9 @@
             tableBody.innerHTML = ''; // Clear the table body
     
             // Iterate through each bill and create a table row
-            bills.forEach(bill => {
+            bills.forEach((bill, index) => {
                 let row = tableBody.insertRow();
+                row.className+=(index % 2 == 0 ? "even" : "odd");
                 row.innerHTML = `
                     <td>${bill.title}</td>
                     <td><a href="${bill.number}.html">${bill.number}</a></td>

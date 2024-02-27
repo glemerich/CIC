@@ -13,7 +13,7 @@
 }
 
 .table-responsive {
-    max-height: 450px;
+    max-height: 700px;
     overflow: scroll;
 }
 
@@ -22,6 +22,21 @@ table.bills thead tr:nth-child(1) th {
     position: sticky;
     top: 0;
     z-index: 10;
+}
+
+table.bills thead tr th {
+    vertical-align: center;
+    padding-bottom: 20px;
+}
+
+table.bills tbody tr.even {
+    background: whitesmoke;
+}
+
+table.bills tbody tr td {
+    vertical-align: top;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .comment {
