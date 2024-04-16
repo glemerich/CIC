@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasks</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>CRUD operations with MySQL Persistence</h1>
+            <a class="btn btn-primary" href="/task/create">Create New Task</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="task : ${taskList}">
+                        <th th:text="${task.taskId}" scope="row">
+                            <a href="@{/task/id={taskId}(taskId=${task.taskId})}">                                
+                            </a>
+                        </th>
+                        <td th:text="${task.title}"></td>
+                        <td th:text="${task.status}"></td>
+                        <td>
+                            <a class="btn btn-primary" 
+                               th:href="@{/task/update/id={taskId}(taskId=${task.taskId})}">
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" 
+                               th:href="@{/task/delete/id={taskId}(taskId=${task.taskId})}">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

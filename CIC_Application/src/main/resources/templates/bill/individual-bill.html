@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Bill</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <style>
+        :root, [data-bs-theme=light] {
+            --bs-nav-pills-link-active-bg: #8f474a;
+        }
+    </style>
+    <link rel="stylesheet" th:href="@{/css/Congress.css}">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" text href="#"><img src="/img/cic-logo-1.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav nav-pills me-4 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="/bill/all">Back to Bills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="representatives.html">Representatives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="Admin.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="mods.html">Mods</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+    </nav>
+
+    <div class="container text-center main-content">
+        <h1 class="mt-5"><span th:text="${bill.billNumber + ' - ' + bill.shortTitle}"></span></h1>
+        <hr>
+        <p><strong>Sponsor:</strong> <span th:text="${bill.sponsorName + ' (' + bill.sponsorParty + '-' + bill.sponsorState + ')'}"></span></p>
+        <p><strong>Bill Title:</strong> <span th:text="${bill.title}"></span></p>
+        <p><strong>Introduced Date:</strong> <span th:text="${bill.introducedDate}"></span></p>
+        <p>
+            <strong>Total Cosponsors:</strong>
+            <span th:text="${bill.cosponsors}"></span>;
+            <strong>By Party:</strong>
+            <span th:if="${bill.cosponsorsByParty}">
+                R: <span th:if="${bill.cosponsorsByParty['R']}" th:text="${bill.cosponsorsByParty['R']}"></span>,
+                D: <span th:if="${bill.cosponsorsByParty['D']}" th:text="${bill.cosponsorsByParty['D']}"></span>
+            </span>
+            <span th:unless="${bill.cosponsorsByParty}">
+                None
+            </span>
+        </p>        
+        <p><strong>Latest Major Action:</strong> <span th:text="${bill.latestMajorAction}"></span> <strong>Date:</strong> <span th:text="${bill.latestMajorActionDate}"></span></p>
+        <p><strong>More Info:</strong> <a th:href="${bill.billUri}" target="_blank">Congress.gov</a></p>
+        <hr>
+
+        <p><strong>Actions:</strong></p>
+        <ul>
+            <li th:each="action : ${bill.actions}" th:text="${action}"></li>
+        </ul>
+
+    </div>
+
+    <!-- New comment form -->
+    <form id="comment-form" onsubmit="postComment(); return false;">
+        <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+        <button type="submit">Post Comment</button>
+    </form>
+    <script src="/js/comments.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasks</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Task Details</h1>
+            <a href="/goal/all" class="btn btn-primary">Home</a>
+            <div class="card text-center">
+                <div class="card-header">
+                    Task
+                </div>
+                <div class="card-body">
+                    <h5 th:text="${task.title}" class="card-title"></h5>
+                    <p th:text="(${task.detail} ?: 'No Details')" class="card-text"></p>
+                    <a th:href="@{/task/update/id={taskId}(taskId=${task.taskId})}" class="btn btn-primary">Edit</a>
+                    <a th:href="@{/task/delete/id={taskId}(taskId=${task.taskId})}" class="btn btn-primary">Delete</a>
+                </div>
+                <div th:text="${task.status}" class="card-footer text-muted">
+                </div>
+            </div>        
+        </div>
+    </body>
+</html>
