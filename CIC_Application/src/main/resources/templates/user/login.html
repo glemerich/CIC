@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/Congress.css">
+    <style>
+        /* Include login page styles */
+        .login {
+            width: 500px;
+            overflow: hidden;
+            text-align: left;
+            position: absolute;
+            top: 25%;
+            bottom: 20%;
+            left: 30%;
+            right: 25%;
+            padding: 100px;
+            background: #8f474a;
+            border-radius: 15px;
+        }
+
+        label {
+            color: white;
+            font-size: 17px;
+        }
+
+        input {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 3px;
+            padding-left: 8px;
+        }
+
+        button {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 17px;
+            padding-left: 7px;
+            background-color: #eafaf1;
+        }
+
+        span {
+            color: white;
+            font-size: 17px;
+        }
+
+        a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include navbar -->
+    <include th:insert="~{other/navbar.html}"></include>
+
+    <!-- Login form -->
+    <div class="container text-center main-content">
+        <h1 class="mt-5">Login</h1>
+        <hr>
+        <div class="login">
+            <form id="login-form" method="post" action="/user/login">
+                <label><b>Username</b></label><br>
+                <input type="text" name="username" id="username" placeholder="Username" required><br><br>
+                <label><b>Password</b></label><br>
+                <input type="password" name="password" id="password" placeholder="Password" required><br><br>
+                <button type="submit">Login</button><br><br>
+                <p><strong><a href="/user/register">Don't have an account? Click here to register!</a></strong></p>
+                <input type="checkbox" id="check">
+                <span>Remember me</span><br><br>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

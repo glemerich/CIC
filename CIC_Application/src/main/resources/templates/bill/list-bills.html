@@ -14,36 +14,7 @@
     </head>
 <body>
     
-    <nav class="navbar navbar-expand-md">
-        <div class="container-fluid">
-            <a class="navbar-brand fs-1" text href="#"><img src="/img/cic-logo-1.png" alt=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> 
-            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
-                <ul class="navbar-nav nav-pills me-4 mb-2">
-                    <li class="nav-item">
-                        <a class="nav-link active fs-4" aria-current="page" href="#">Bills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-4" href="representatives.html">Representatives</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-4" href="vote.html">Vote Records</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-4" href="Admin.html">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-4" href="mods.html">Mods</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-4" href="login.html">Login</a>
-                    </li>
-                </ul>
-            </div>    
-        </div>
-    </nav>
+    <include th:insert="~{other/navbar.html}"></include>
 
 
     <div class="table-responsive mt-4 mx-4">
