@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Currently in Congress</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+        <style>
+            :root, [data-bs-theme=light] {
+                --bs-nav-pills-link-active-bg: #8f474a;
+            }
+        </style>
+        <link rel="stylesheet" href="assets/css/Congress.css">
+    </head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav nav-pills me-4 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-4" aria-current="page" href="#">Bills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="representatives.html">Representatives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="Admin.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="mods.html">Mods</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+    </nav>
+
+
+    <div class="table-responsive mt-4 mx-4">
+        <table class="bills w-100">
+            <thead>
+            <tr class="fs-3 px-5">
+                <th class="cic__header fw-medium">Bill Title</th>
+                <th class="fw-medium">Bill Number</th>
+                <th class="fw-medium">Bill Sponsor(s)</th>
+                <th class="fw-medium">Date Introduced</th>
+                <th class="fw-medium">Chamber</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider" id="billData">
+                <!-- Bills data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="assets/js/bootstrap.js"></script>
+    <script>
+        // Fetch bill data from the ProPublica Congress API
+        fetch('https://api.propublica.org/congress/v1/118/house/bills/introduced.json', {
+            method: 'GET',
+            headers: {
+                "X-API-Key": "nK1MVaOhD4iNGxcfKHn8ooks0QvxBGJBvjNDPcv0"
+            }
+        })
+        .then(response => {
+            // Check if the response is successful
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const bills = data.results[0].bills;
+            const tableBody = document.getElementById('billData');
+            tableBody.innerHTML = ''; // Clear the table body
+    
+            // Iterate through each bill and create a table row
+            bills.forEach((bill, index) => {
+                let row = tableBody.insertRow();
+                row.className+=(index % 2 == 0 ? "even" : "odd");
+                row.innerHTML = `
+                    <td>${bill.title}</td>
+                    <td><a href="${bill.number}.html">${bill.number}</a></td>
+                    <td>${bill.sponsor_title} ${bill.sponsor_name}, ${bill.sponsor_party}, ${bill.sponsor_state}</td>
+                    <td>${bill.introduced_date}</td>
+                    <td>House</td>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+    </body>
+    </html>

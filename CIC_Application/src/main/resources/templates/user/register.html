@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/Congress.css">
+</head>
+<body>
+    <!-- Include navbar -->
+    <include th:insert="~{other/navbar.html}"></include>
+
+    <!-- Sign up form -->
+    <div class="container text-center main-content">
+        <h1 class="mt-5">Sign Up</h1>
+        <hr>
+        <div class="login">
+            <form id="signup-form" method="post" action="/user/register">
+                <label><b>Username</b></label><br>
+                <input type="text" name="username" id="username" placeholder="Username" required><br><br>
+                <label><b>Password</b></label><br>
+                <input type="password" name="password" id="password" placeholder="Password" required><br><br>
+                <label><b>Email</b></label><br>
+                <input type="email" name="email" id="email" placeholder="Email" required><br><br>
+                <button type="submit">Sign Up</button><br><br>
+                <p><strong><a href="/user/login">Already have an account? Click here to log in!</a></strong></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

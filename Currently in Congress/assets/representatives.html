@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Currently in Congress</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+    
+        <style>
+            :root, [data-bs-theme=light] {
+                --bs-nav-pills-link-active-bg: #8f474a;
+            }
+        </style>
+        <link rel="stylesheet" href="assets/css/Congress.css">
+    </head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav nav-pills me-4 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="bills.html">Bills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fs-4" aria-current="page" href="#">Representatives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="Admin.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="mods.html">Mods</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+    </nav>
+</body>
+<body>
+        
+    <div class="container text-center main-content">
+        <div class="row header align-items-top fs-2 mb-3">
+            <div class="col-1">
+                
+            </div>
+            <div class="col-2">
+                Representative
+            </div>
+            <div class="col-2">
+                Party
+            </div>
+            <div class="col-2">
+                Leadership Role
+            </div>
+            <div class="col-2">
+                Next Election
+            </div>
+            <div class="col-2">
+                Chamber
+            </div>
+            <div class="col-1">
+                
+            </div>
+        </div>
+
+        <div class="row align-items-top fs-4">
+            <div class="col-1">
+                
+            </div>
+            <div class="col-2">
+                <a href="tammy-baldwin.html">Tammy Baldwin</a>
+            </div>
+            <div class="col-2">
+                D
+            </div>
+            <div class="col-2">
+                Senate Democratic Caucus Secretary
+            </div>
+            <div class="col-2">
+                2024
+            </div>
+            <div class="col-2">
+                Senate
+            </div>
+            <div class="col-1">
+                
+            </div>
+        </div>
+
+        <div class="row align-items-top fs-4">
+            <div class="col-1">
+                
+            </div>
+            <div class="col-2">
+                <a href="alma-adams.html">Alma Adams</a> 
+            </div>
+            <div class="col-2">
+                D
+            </div>
+            <div class="col-2">
+                N/A
+            </div>
+            <div class="col-2">
+                2024
+            </div>
+            <div class="col-2">
+                House
+            </div>
+            <div class="col-1">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.js"></script>
+    <script>
+        // Fetch representative data from the API
+        fetch('https://api.propublica.org/congress/v1/118/house/members.json', {
+            method: 'GET',
+            headers: {
+                'X-API-Key': 'nK1MVaOhD4iNGxcfKHn8ooks0QvxBGJBvjNDPcv0'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const members = data.results[0].members;
+            const tableBody = document.querySelector('.main-content .row:last-of-type');
+            
+            // Populate table rows with representative data
+            members.forEach(member => {
+                const newRow = document.createElement('div');
+                newRow.classList.add('row', 'align-items-top', 'fs-4');
+                newRow.innerHTML = `
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                        <a href="${member.id}.html">${member.first_name} ${member.last_name}</a>
+                    </div>
+                    <div class="col-2">${member.party}</div>
+                    <div class="col-2">${member.leadership_role ? member.leadership_role : 'N/A'}</div>
+                    <div class="col-2">${member.next_election}</div>
+                    <div class="col-2">House</div>
+                    <div class="col-1"></div>
+                    <hr>
+                `;
+                tableBody.parentNode.insertBefore(newRow, tableBody);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+
+    <script src="assets/js/bootstrap.js"></script>
+</body>
+</html>

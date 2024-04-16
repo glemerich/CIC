@@ -1,0 +1,53 @@
+.navbar {
+    background-color: #8f474a;
+}
+
+.navbar .navbar-brand img {
+    width: 180px;
+}
+.navbar .nav-item .nav-link {
+    color: #d8d7d5;
+}
+.nav-pills {
+    --bs-nav-pills-link-active-bg: #a55b5d;
+}
+
+.table-responsive {
+    max-height: 1100px;
+    overflow: scroll;
+}
+
+table.bills thead tr:nth-child(1) th {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+table.bills thead tr th {
+    vertical-align: center;
+    padding-bottom: 20px;
+}
+
+table.bills tbody tr.even {
+    background: whitesmoke;
+}
+
+table.bills tbody tr td {
+    vertical-align: top;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.comment {
+    border: 2px solid #b10404;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .reply {
+    border: 1px solid #007bff;
+    margin-left: 20px; /* Indent the replies */
+    margin-bottom: 5px;
+    padding: 5px;
+  }

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currently in Congress</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <style>
+        /* Add custom CSS styles for table cells */
+        td, th {
+            padding: 10px; /* Adjust the padding to increase or decrease spacing */
+        }
+
+        .button-container {
+
+            margin-top: 10px; /* Add margin between table rows and buttons */
+            display: flex;
+            justify-content: flex-end;            
+            gap: 5px; /* Add space between buttons */
+        }
+
+        .button {
+            flex: 1;
+        }
+
+        /* Add spacing between tables */
+        table {
+            margin-bottom: 20px; /* Add margin below each table */
+        }
+
+        h1 {
+            text-align: center; /* Center align the h1 */
+            margin-bottom: 20px; /* Add margin below the h1 */
+        }
+
+        h2 {
+            margin-top: 20px; /* Add margin above the h2 */
+            text-align: center; /* Center align the h1 */
+        }
+
+      
+    </style>
+
+    <style>
+        :root, [data-bs-theme=light] {
+            --bs-nav-pills-link-active-bg: #8f474a;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/Congress.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+        <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav nav-pills me-4 mb-2">
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="bills.html">Bills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="representatives.html">Representatives</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fs-4" aria-current="page" href="Admin.html">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="mods.html">Mods</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="login.html">Login</a>
+                </li>
+            </ul>
+        </div>    
+    </div>
+</nav>
+
+<div>
+    <h1 class="header">Admins Page</h1>
+</div>
+    
+<div>
+    <h2>Reported Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Reported User</th>
+                <th>Reported By</th>
+                <th>Reason for Reported</th>
+                <th>Small info on why being reported</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SleepyJoe69</td>
+                <td>Donladtrump420</td>
+                <td>Foul Language</td>
+                <td>Doesn't let me talk.</td>
+                <td class="button-container">
+                    <!-- Button 1 -->
+                    <button class="button">Ban</button>
+                    <!-- Button 2 -->
+                    <button class="button">Ignore</button>
+                    <button class="button">Temp. Ban</button>
+                </td>
+            </tr>
+            <tr>
+                <td>johndoe</td>
+                <td>jilldoe</td>
+                <td>Hate speech</td>
+                <td>N/A</td>
+                <td class="button-container"><!-- Button 1 -->
+                    <button class="button">Ban</button>
+                    <!-- Button 2 -->
+                    <button class="button">Ignore</button>
+                    <button class="button">Temp. Ban</button>
+                </td>
+            </tr>
+            <tr>
+                <td>grogu333</td>
+                <td>BotaFeta</td>
+                <td>Spamming Comments</td>
+                <td>N/A</td>
+                <td class="button-container"><!-- Button 1 -->
+                    <button class="button">Ban</button>
+                    <!-- Button 2 -->
+                    <button class="button">Ignore</button>
+                    <button class="button">Temp. Ban</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Crellina444</td>
+                <td>Carturor</td>
+                <td>Abuse of leadership power </td>
+                <td>Deletes multiple comments which don't violate the code of conduct of the website.</td>
+                <td class="button-container"><!-- Button 1 -->
+                    <button class="button">Ban</button>
+                    <!-- Button 2 -->
+                    <button class="button">Ignore</button>
+                    <button class="button">Temp. Ban</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </table>
+</div>
+
+<div class="spacer"></div>
+    
+<div>
+    <h2>Mods for Hire</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Application</th>
+                <th>Background Check</th>
+                <th>Small info on why want to be a mod</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>aestheticxs</td>
+                <td>aestheticxsapp.pdf</td>
+                <td>aestheticxsBc.pdf</td>
+                <td>Make the community safe!</td>
+                <td class="button-container">
+                    <!-- Button 1 -->
+                    <button class="button">Accept</button>
+                    <!-- Button 2 -->
+                    <button class="button">Decline</button>
+                    <button class="button">Waitlist</button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+<script src="assets/js/bootstrap.js"></script>
+</body>
+</html>

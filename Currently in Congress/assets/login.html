@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Currently in Congress</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+    
+        <style>
+            :root, [data-bs-theme=light] {
+                --bs-nav-pills-link-active-bg: #8f474a;
+            }
+        </style>
+        <link rel="stylesheet" href="assets/css/Congress.css">
+    </head>
+
+    <style>
+        .login {
+        width: 500px;
+        overflow: hidden;
+        text-align: left;
+        position: absolute;
+        top: 25%;
+        bottom: 20%;
+        left: 30%;
+        right: 25%;
+        padding: 100px;
+        background: #8f474a;
+        border-radius: 15px;
+        }
+
+        label {
+            color: white;
+            font-size: 17px;
+        }
+
+        #Username {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 3px;
+            padding-left: 8px;
+        }
+
+        #Password {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 3px;
+            padding-left: 8px;
+
+        }
+
+        #log {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 17px;
+            padding-left: 7px;
+        }
+
+        span {
+            color: white;
+            font-size: 17px;
+        }
+
+        a {
+            float: middle;
+            background-color: #eafaf1;
+        }
+    </style>
+
+<body>
+    
+    <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-1" text href="#"><img src="assets/img/cic-logo-1.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav nav-pills me-4 mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="bills.html">Bills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="representatives.html">Representatives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="Admin.html">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-4" href="mods.html">Mods</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fs-4" aria-current="page" href="#">Login</a>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+    </nav>
+
+    
+    <div class="login">
+        <form id="login" method="get" action="login.php">
+            <label><b>User Name
+            </b>
+            </label>
+            <input type="text" name="Username" id="Username" placeholder="Username">
+            <br><br>
+            <label><b>Password
+            </b>
+            </label>
+            <input type="Password" name="Pasword" id="Password" placeholder="Password">
+            <br><br>
+            <button type="Login">Login</button>
+            <p><Strong><a href="">Don't have an account? Click here to register!</a></Strong></li></p>
+            <br><br>
+            <input type="checkbox" id="check">
+            <span>Remember me</span>
+            <br><br>
+        </form>
+    </div>
+
+
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
