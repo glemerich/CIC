@@ -15,6 +15,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     public String registerUser(User user) {
         // Check if username already exists
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {

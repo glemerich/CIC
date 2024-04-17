@@ -181,7 +181,7 @@ public class BillController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "bill/individual-bill"; // Adjust the template name based on your file structure
+        return "bill/individual-bill";
     }
     
 }

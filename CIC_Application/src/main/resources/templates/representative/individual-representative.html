@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Representative Details</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <style>
+        :root, [data-bs-theme=light] {
+            --bs-nav-pills-link-active-bg: #8f474a;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/Congress.css">
+</head>
+<body>
+    
+    <include th:insert="~{other/navbar.html}"></include>
+
+    <div class="container text-center main-content">
+        <h1 class="mt-5" th:text="${representative.firstName} + ' ' + ${representative.lastName}"></h1>
+        
+        <hr>
+
+        <!-- Bio Section -->
+        <h2>Bio</h2>
+        <button type="submit" class="btn btn-primary">Edit Bio</button>
+        <p th:text="${representative.id}"></p>
+        <hr>
+
+        <!-- Sponsored Bills Section 
+        <h2>Cosponsored Bills</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Bill Number</th>
+                    <th>Title</th>
+                    <th>Date Introduced</th>
+                    <th>Latest Major Action/Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bill : ${representative.cosponsoredBills}">
+                    <td><a th:href="@{'/bills/' + ${bill.id}}"><span th:text="${bill.billNumber}"></span></a></td>
+                    <td th:text="${bill.title}"></td>
+                    <td th:text="${bill.dateIntroduced}"></td>
+                    <td th:text="${bill.latestMajorAction}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <hr>
+
+        
+        <h2>Voting Record</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Bill Number</th>
+                    <th>Bill Title</th>
+                    <th>Question</th>
+                    <th>Result</th>
+                    <th>Vote Position</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="vote : ${representative.votingRecord}">
+                    <td><a th:href="@{'/bills/' + ${vote.billId}}"><span th:text="${vote.billNumber}"></span></a></td>
+                    <td th:text="${vote.billTitle}"></td>
+                    <td th:text="${vote.question}"></td>
+                    <td th:text="${vote.result}"></td>
+                    <td th:text="${vote.votePosition}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+
+        <h2>Polls</h2>
+        
+        <form id="pollForm">
+            <div class="mb-3">
+                <label for="pollQuestion" class="form-label">Poll Question</label>
+                <input type="text" class="form-control" id="pollQuestion" required>
+            </div>
+            <div class="mb-3">
+                <label for="pollOptions" class="form-label">Poll Options (Separate with commas)</label>
+                <input type="text" class="form-control" id="pollOptions" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Poll</button>
+        </form>
+
+        
+        <div id="pollsSection" class="mt-5">
+            <h2>Existing Polls</h2>
+            <div id="existingPolls">
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!--
+    <script src="/js/polls.js"></script>
+     <script>
+        document.getElementById('pollForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get poll question and options from the form
+            const question = document.getElementById('pollQuestion').value;
+            const options = document.getElementById('pollOptions').value.split(',');
+
+            // Create HTML structure for the new poll
+            const pollHtml = `
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">${question}</h5>
+                        <form>
+                            ${options.map(option => `
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="${question}" id="${option}" value="${option}">
+                                    <label class="form-check-label" for="${option}">
+                                        ${option}
+                                    </label>
+                                </div>
+                            `).join('')}
+                        </form>
+                    </div>
+                </div>
+            `;
+
+            // Append the new poll HTML to the existing polls section
+            document.getElementById('existingPolls').insertAdjacentHTML('beforeend', pollHtml);
+
+            // Reset form fields
+            document.getElementById('pollQuestion').value = '';
+            document.getElementById('pollOptions').value = '';
+        });
+    </script>
+    -->
+
+    <script src="/js/bootstrap.js"></script>
+</body>
+</html>

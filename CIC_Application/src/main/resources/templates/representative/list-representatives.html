@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currently in Congress</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <style>
+        :root, [data-bs-theme=light] {
+            --bs-nav-pills-link-active-bg: #8f474a;
+        }
+        .header {
+            margin-bottom: 10px;
+        }
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/Congress.css">
+</head>
+<body>
+
+<include th:insert="~{other/navbar.html}"></include>
+
+<div class="table-responsive mt-4 mx-4">
+    <div class="row header align-items-top fs-2 mb-3">
+        <div class="col-1"></div>
+        <div class="col-3">Representative</div>
+        <div class="col-1">Party</div>
+        <div class="col-3">Leadership Role</div>
+        <div class="col-2">State</div>
+        <div class="col-2">District</div>
+    </div>
+
+    <div class="row align-items-top fs-4" th:each="representative : ${representatives}">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <a th:href="@{'/representative/' + ${representative.id}}">
+                <span th:text="${representative.firstName} + ' ' + ${representative.lastName}"></span>
+            </a>
+        </div>
+        <div class="col-1" th:text="${representative.party}"></div>
+        <div class="col-3" th:text="${representative.leadershipRole != null ? representative.leadershipRole : 'N/A'}"></div>
+        <div class="col-2" th:text="${representative.state}"></div>
+        <div class="col-2" th:text="${representative.district}"></div>
+    </div>
+</div>
+
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>
