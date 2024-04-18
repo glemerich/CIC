@@ -30,9 +30,7 @@ public class BillController {
     public String getBills(Model model) {
         try {
             // URL for fetching bill data from the ProPublica Congress API
-            // Create a URI from the string URL
             URI uri = URI.create("https://api.propublica.org/congress/v1/118/house/bills/introduced.json");
-
             // Convert URI to URL
             URL url = uri.toURL();
 
@@ -44,7 +42,6 @@ public class BillController {
             // Read response
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                 // Parse JSON response using Gson directly from the input stream
-                
                 JsonElement jsonElement = JsonParser.parseReader(reader);
                 JsonArray results = jsonElement.getAsJsonObject().getAsJsonArray("results");
 
@@ -58,33 +55,18 @@ public class BillController {
                     for (JsonElement billElement : billsArray) {
                         JsonObject billObject = billElement.getAsJsonObject();
                         // Process each billObject here
-                        // Example:
-                        String title = billObject.get("title").getAsString();
-                        String billId = billObject.get("bill_id").getAsString();
-                        String billNumber = billObject.get("number").getAsString();
-                        String billSlug = billObject.get("bill_slug").getAsString();
-                        String introducedDate = billObject.get("introduced_date").getAsString();
-                        String sponsorName = billObject.get("sponsor_name").getAsString();
-                        String sponsorParty = billObject.get("sponsor_party").getAsString();
-                        String sponsorState = billObject.get("sponsor_state").getAsString();
-                        String sponsorId = billObject.get("sponsor_id").getAsString();
-                        String shortTitle = billObject.get("short_title").getAsString();
-
-
-                        // Construct and populate Bill object
                         Bill bill = new Bill();
-                        bill.setTitle(title);
-                        bill.setBillId(billId);
-                        bill.setBillNumber(billNumber);
-                        bill.setBillSlug(billSlug);
-                        bill.setIntroducedDate(introducedDate);
-                        bill.setSponsorName(sponsorName);
-                        bill.setSponsorParty(sponsorParty);
-                        bill.setSponsorState(sponsorState);
-                        bill.setSponsorId(sponsorId);
-                        bill.setShortTitle(shortTitle);
+                        bill.setTitle(billObject.get("title").getAsString());
+                        bill.setBillId(billObject.get("bill_id").getAsString());
+                        bill.setBillNumber(billObject.get("number").getAsString());
+                        bill.setBillSlug(billObject.get("bill_slug").getAsString());
+                        bill.setIntroducedDate(billObject.get("introduced_date").getAsString());
+                        bill.setSponsorName(billObject.get("sponsor_name").getAsString());
+                        bill.setSponsorParty(billObject.get("sponsor_party").getAsString());
+                        bill.setSponsorState(billObject.get("sponsor_state").getAsString());
+                        bill.setSponsorId(billObject.get("sponsor_id").getAsString());
+                        bill.setShortTitle(billObject.get("short_title").getAsString());
                         bills.add(bill);
-
                     }
                 }
                 // Add bills to model

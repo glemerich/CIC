@@ -8,12 +8,12 @@ import jakarta.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private long user_id;
 
     private String username;
     private String password;
@@ -32,12 +32,12 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public long getUserId() {
-        return userId;
+    public long getUser_Id() {
+        return user_id;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser_Id(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {

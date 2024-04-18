@@ -18,13 +18,20 @@
 
     <div class="container text-center main-content">
         <h1 class="mt-5" th:text="${representative.firstName} + ' ' + ${representative.lastName}"></h1>
-        
+        <p class="mt-5" th:text="${representative.biography}"></p>
         <hr>
 
-        <!-- Bio Section -->
-        <h2>Bio</h2>
-        <button type="submit" class="btn btn-primary">Edit Bio</button>
-        <p th:text="${representative.id}"></p>
+        <!-- Edit Bio button -->
+        <button id="editBioBtn" class="btn btn-primary">Edit Bio</button>
+        
+        <!-- Biography form -->
+        <form id="biographyForm" method="post" style="display: none;">
+            <div class="mb-3">
+                <label for="biography" class="form-label">Biography</label>
+                <textarea class="form-control" id="newBiography" name="newBiography" rows="4" th:text="${representative.biography}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>        
         <hr>
 
         <!-- Sponsored Bills Section 
@@ -96,46 +103,7 @@
         </div>
     </div>
     -->
-
-    <!--
-    <script src="/js/polls.js"></script>
-     <script>
-        document.getElementById('pollForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
-            
-            // Get poll question and options from the form
-            const question = document.getElementById('pollQuestion').value;
-            const options = document.getElementById('pollOptions').value.split(',');
-
-            // Create HTML structure for the new poll
-            const pollHtml = `
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h5 class="card-title">${question}</h5>
-                        <form>
-                            ${options.map(option => `
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="${question}" id="${option}" value="${option}">
-                                    <label class="form-check-label" for="${option}">
-                                        ${option}
-                                    </label>
-                                </div>
-                            `).join('')}
-                        </form>
-                    </div>
-                </div>
-            `;
-
-            // Append the new poll HTML to the existing polls section
-            document.getElementById('existingPolls').insertAdjacentHTML('beforeend', pollHtml);
-
-            // Reset form fields
-            document.getElementById('pollQuestion').value = '';
-            document.getElementById('pollOptions').value = '';
-        });
-    </script>
-    -->
-
     <script src="/js/bootstrap.js"></script>
+    <script src="/js/representative.js"></script>
 </body>
 </html>
