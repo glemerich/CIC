@@ -19,7 +19,7 @@
     
 
     <div class="container text-center main-content">
-        <h1 class="mt-5"><span th:text="${bill.billNumber + ' - ' + bill.shortTitle}"></span></h1>
+        <h1 class="mt-5"><span th:text="${bill.billNumber + ' - ' + bill.shortTitle}" th:attr="data-bill-number=${bill.billNumber}"></span></h1>
         <hr>
         <p><strong>Sponsor:</strong> <span th:text="${bill.sponsorName + ' (' + bill.sponsorParty + '-' + bill.sponsorState + ')'}"></span></p>
         <p><strong>Bill Title:</strong> <span th:text="${bill.title}"></span></p>
@@ -36,7 +36,6 @@
                 None
             </span>
         </p>        
-        <p><strong>Latest Major Action:</strong> <span th:text="${bill.latestMajorAction}"></span> <strong>Date:</strong> <span th:text="${bill.latestMajorActionDate}"></span></p>
         <p><strong>More Info:</strong> <a th:href="${bill.billUri}" target="_blank">Congress.gov</a></p>
         <hr>
 
@@ -48,11 +47,95 @@
     </div>
 
     <!-- New comment form -->
-    <form id="comment-form" onsubmit="postComment(); return false;">
-        <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+    <form id="comment-form">
+        <textarea id="comment-text"  rows="5" cols="60"  placeholder="Write your comment here..."></textarea>
         <button type="submit">Post Comment</button>
     </form>
-    <script src="/js/comments.js"></script>
+    <div id="comment-list"></div>
+
+    <!-- JavaScript for handling form submission -->
+    <script>
+        document.getElementById("comment-form").style.margin = "100px 50px 50px 75px";
+        window.addEventListener("load", () => {
+            console.log("the page has loaded");
+            var billNumber = document.querySelector('[data-bill-number]').getAttribute('data-bill-number');
+
+            // fetch('/comment/{billId}', {
+            fetch('/comment/' + billNumber, {
+                method: 'GET'
+            })
+            .then(response => {
+                console.log("response: ", response);
+                return response.text();
+            }).then(htmlFrag => {
+                console.log("htmlFrag", htmlFrag);
+                document.getElementById("comment-list").innerHTML = htmlFrag;
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error posting comment:', error);
+            });
+
+        });
+
+        document.getElementById('comment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Change to userName of user logged in
+            var userID = "1";
+
+            var commentText = document.getElementById('comment-text').value;
+            var billNumber = document.querySelector('[data-bill-number]').getAttribute('data-bill-number');
+            var commentData = {
+                commentText: commentText,
+                userId: userID,
+                billId: billNumber
+            };
+            console.log("commentData;", commentData);
+            fetch('/comment/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(commentData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Handle successful comment submission
+                console.log('Comment posted:', data);
+
+                // Clear textarea after posting comment
+                document.getElementById('comment-text').value = '';
+
+                // fetch('/comment/{billId}', {
+                fetch('/comment/' + billNumber, {
+                method: 'GET'
+                })
+                .then(response => {
+                    console.log("response: ", response);
+                    return response.text();
+                }).then(htmlFrag => {
+                    console.log("htmlFrag", htmlFrag);
+                    document.getElementById("comment-list").innerHTML = htmlFrag;
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error posting comment:', error);
+                });
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error posting comment:', error);
+            });
+
+            /*// Reset the textarea form after comment is submitted
+            const formToRest = document.getElementById('comment-text');
+            formToReset.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formToReset.reset();
+            });*/
+        });
+    </script>
 
 </body>
 </html>

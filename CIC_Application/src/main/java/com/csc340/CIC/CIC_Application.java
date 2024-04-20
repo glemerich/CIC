@@ -9,11 +9,6 @@ public class CIC_Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CIC_Application.class, args);
-
-		//BillController billController = new BillController();
-
-        // Call the method to fetch bill data
-        //System.out.println(billController.getBills());
 	}
 
 }
