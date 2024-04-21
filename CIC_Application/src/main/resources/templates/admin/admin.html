@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Reported Users</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <style>
+        td, th {
+            padding: 10px; /* Adjust padding */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* Align buttons to the right */
+            gap: 5px; /* Space between buttons */
+        }
+
+        .button {
+            flex: 1;
+        }
+
+        table {
+            margin-block-end: 20px; /* Space below table */
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-block-start: 20px; /* Margin above headers */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+        <a class="navbar-brand fs-1" href="#"><img src="assets/img/cic-logo-1.png" alt="CIC Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> 
+        <div id="navbar-content" class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav nav-pills me-4 mb-2">
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="bills.html">Bills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="representatives.html">Representatives</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="vote.html">Vote Records</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fs-4" href="Admin.html">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="mods.html">Mods</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="login.html">Login</a>
+                </li>
+            </ul>
+        </div>    
+    </div>
+</nav>
+
+<div>
+    <h1>Admins Page</h1>
+    <h2>Reported Users</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reported User</th>
+                <th>Reported By</th>
+                <th>Reason for Report</th>
+                <th>Details</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="userReportsBody">
+            <!-- Data will be loaded dynamically here -->
+        </tbody>
+    </table>
+</div>
+
+<script src="assets/js/bootstrap.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/admin/reported-users')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('userReportsBody');
+                data.forEach(user => {
+                    const row = tbody.insertRow();
+                    row.innerHTML = `
+                        <td>${user.username}</td>
+                        <td>${user.reportedBy}</td>
+                        <td>${user.reason}</td>
+                        <td>${user.details}</td>
+                        <td class="button-container">
+                            <button class="btn btn-danger" onclick="takeAction('ban', ${user.id});">Ban</button>
+                            <button class="btn btn-secondary" onclick="takeAction('ignore', ${user.id});">Ignore</button>
+                            <button class="btn btn-warning" onclick="takeAction('tempBan', ${user.id});">Temp Ban</button>
+                        </td>
+                    `;
+                });
+            })
+            .catch(error => console.error('Error fetching reported users:', error));
+    });
+
+    function takeAction(action, userId) {
+        console.log(`Action ${action} on user ${userId}`); // Replace with API call to perform action
+        // Example: POST to /api/admin/action with userId and action
+    }
+</script>
+</body>
+</html>
