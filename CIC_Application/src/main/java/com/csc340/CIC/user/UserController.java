@@ -1,6 +1,11 @@
 package com.csc340.CIC.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,23 +17,34 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @GetMapping("/login")
     public String showLoginPage() {
         return "/user/login";
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
-        try {
-            // Spring Security will handle authentication automatically
-            // Redirect to the home page after successful login
-            return "redirect:/bill/all";
-        } catch (Exception e) {
-            // Log the error message
-            e.printStackTrace();
-            return "redirect:/user/login?error=true";
-        }
+public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    try {
+        // Authenticate the user using Spring Security's authentication mechanisms
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(username, password)
+        );
+
+        // If authentication succeeds, set the authentication object in the SecurityContext
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // Redirect to the home page after successful login
+        return "redirect:/bill/all";
+    } catch (AuthenticationException e) {
+        // Log the error message
+        e.printStackTrace();
+        return "redirect:/user/login?error=true";
     }
+}
+
 
 
     @GetMapping("/register")

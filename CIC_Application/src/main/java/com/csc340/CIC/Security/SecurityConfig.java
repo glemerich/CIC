@@ -1,10 +1,11 @@
-package com.csc340.CIC;
-
+package com.csc340.CIC.Security;
 import com.csc340.CIC.user.CustomUserDetailsService;
+
 import jakarta.servlet.DispatcherType;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -32,7 +33,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                 .dispatcherTypeMatchers(DispatcherType.FORWARD,
                         DispatcherType.ERROR).permitAll()
-                //.anyMatchers("/bill/all").authenticated() // Secure /bill/all endpoint
+                //.anyMatchers("/bill").authenticated() // Secure /bill/all endpoint
                 .anyRequest().permitAll() // Allow access endpoints without authentication
                 )
                 .formLogin((form) -> form
@@ -47,12 +48,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManagerBean() {
+        return new CustomAuthenticationManager(userDetailsService, passwordEncoder());
     }
 }
