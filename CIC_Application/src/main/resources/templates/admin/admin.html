@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Details</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <style>
+        :root, [data-bs-theme=light] {
+            --bs-nav-pills-link-active-bg: #8f474a; 
+        }
+    </style>
+    <link rel="stylesheet" href="/css/Congress.css">
+</head>
+<body>
+    
+    <!-- Included navigation bar from other html file -->
+    <include th:insert="~{other/navbar.html}"></include>
+
+    <div class="container">
+        <h1 class="mt-5">Reported Users</h1>
+        <table class="table" id="report-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User ID</th>
+                    <th>Reported User</th>
+                    <th>Reported By</th>
+                    <th>Reason Reported</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamically creating table row for the report -->
+                <tr th:each="report : ${reports}">
+                    <td th:text="${report.reportId}"></td>
+                    <td th:text="${report.reportedUser}"></td>
+                    <td th:text="${report.reportedBy}"></td>
+                    <td th:text="${report.reasonReported}"></td>
+                    <td>
+                        <!-- Action buttons for banning or ignoring the reported user -->
+                        <a th:href="@{'/admin/ban/' + ${report.reportId}}" class="btn btn-danger">Ban</a>
+                        <a th:href="@{'/admin/ignore/' + ${report.reportId}}" class="btn btn-secondary">Ignore</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
