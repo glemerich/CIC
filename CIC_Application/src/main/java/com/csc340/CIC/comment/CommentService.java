@@ -10,29 +10,29 @@ public class CommentService {
     
     @Autowired
     private CommentRepository commentRepository;
-
-    public void deleteComment(String commentid){
-
+                       
+    public void deleteComment(long commentId){
+        commentRepository.deleteById(commentId);                               
     }
 
-    public String addComment(String userId, String billId, String commentText) {
-
-        return "";
-    }
-
-    // Add failure option to lead to post-failure in Controller
     public String addComment(Comment comment) {
         commentRepository.save(comment);
         return "Success";
     }
 
-    public String editComment(String commentid, String content) {
-
+    public String editComment(String commentId, String content) {
+        // Implement edit comment functionality
         return "";
     }
 
     public List<Comment> getComments(String billId) {
-
         return commentRepository.findByBillId(billId);
+    }
+
+    public void reportComment(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new CommentNotFoundException("Comment not found with id: " + commentId));
+        comment.setCommentReport(true);
+        commentRepository.save(comment);
     }
 }

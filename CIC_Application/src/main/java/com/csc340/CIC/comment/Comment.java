@@ -28,9 +28,14 @@ public class Comment {
     @Column(name = "comment_date", nullable = false)
     private Date commentDate;
 
-    public Comment(){
+    @Column(name = "comment_report", nullable = false)
+    private boolean commentReport;
 
+    public Comment() {
+        // Default constructor
     }
+
+    // Getters and setters for all fields
 
     public Long getCommentId() {
         return commentId;
@@ -63,13 +68,26 @@ public class Comment {
     public void setBillId(String billId) {
         this.billId = billId;
     }
-    
+
     public Date getCommentDate() {
         return commentDate;
     }
 
     public void setCommentDate(Date commentDate) {
         this.commentDate = commentDate;
+    }
+
+    public boolean isCommentReport() {
+        return commentReport;
+    }
+
+    public void setCommentReport(boolean commentReport) {
+        this.commentReport = commentReport;
+    }
+
+    // Method to report a comment
+    public void reportComment() {
+        this.commentReport = true;
     }
 
     public String toString() {

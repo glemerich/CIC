@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reported Comments</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+        
+    </style>
+  
+    <link rel="stylesheet" th:href="@{/css/Congress.css}">
+</head>
+<body>
+
+    <div th:insert="~{other/navbar.html}"></div>
+
+<div class="container mt-4">
+    <h2>Reported Comments</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reported Comment Text</th>
+                <th>Comment Id</th>
+                <th>Reason for Report</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr th:each="report : ${commentText}">
+                <td th:text="${report.commentText}"></td>
+                <td th:text="${report.commentId}"></td>
+                <td th:text="${report.reportedText}"></td>
+                <td>
+                    <form th:action="@{/mod/delete}" method="get">
+                        <input type="hidden" name="commentId" th:value="${report.commentId}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
