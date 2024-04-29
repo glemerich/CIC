@@ -17,12 +17,11 @@
                 <td th:text="${comment.commentText}"></td>
                 <td>
                     <form action="/comment/report" method="post">
-                        <!-- Add hidden input field for billId -->
-                        <input type="hidden" name="billId" th:value="${comment.billId}" />
-                        <!-- Pass commentId as a parameter -->
+                        <input type="hidden" name="billId" th:value="${T(com.csc340.CIC.comment.BillIdFormatter).formatBillId(comment.billId)}" />
                         <input type="hidden" name="commentId" th:value="${comment.commentId}" />
                         <button type="submit">Report</button>
                     </form>
+                    
                 </td>
             </tr>
         </tbody>
