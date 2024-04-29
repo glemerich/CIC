@@ -14,6 +14,9 @@ public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
+    
+    @Column(name = "bill_id", nullable = false)
+    private String billId;
 
     @Column(name = "comment_text", length = 255)
     private String commentText;
