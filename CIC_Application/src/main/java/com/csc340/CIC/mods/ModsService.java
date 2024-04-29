@@ -26,13 +26,6 @@ public class ModsService {
         modsRepository.deleteById(commentID);
     }
 
-    public void ignoreReportedComment(Long commentId) {
-        // Fetch the comment by its ID
-        Comment comment = commentService.getCommentById(commentId);
-        // Set the report status to false
-        comment.setCommentReport(false);
-        // Update the comment in the database
-        commentService.updateComment(comment);
-    }
+    
     
 }
