@@ -34,7 +34,7 @@ public class CommentController {
     public String reportComment(@RequestParam("commentId") Long commentId,
                                 @RequestParam("billId") String billId) {
         commentService.reportComment(commentId);
-        return "redirect:/bill/" + billId;
+        return "comment/post-success";
     }
 
 
@@ -46,5 +46,4 @@ public class CommentController {
     }
     */
 }
-
 
