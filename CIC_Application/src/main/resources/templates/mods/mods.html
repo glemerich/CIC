@@ -39,6 +39,11 @@
                         <input type="hidden" name="commentId" th:value="${comment.commentId}">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
+                    <!-- Form to ignore the reported comment -->
+                    <form th:action="@{/mod/ignore}" method="get">
+                        <input type="hidden" name="commentId" th:value="${comment.commentId}">
+                        <button type="submit" class="btn btn-secondary">Ignore</button>
+                    </form>
                 </td>
             </tr>
         </tbody>

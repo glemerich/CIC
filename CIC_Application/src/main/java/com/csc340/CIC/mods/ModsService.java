@@ -10,10 +10,12 @@ import java.util.List;
 public class ModsService {
     
     private final ModsRepository modsRepository;
+    private final CommentService commentService; // Inject CommentService
 
     @Autowired
-    public ModsService(ModsRepository modsRepository) {
+    public ModsService(ModsRepository modsRepository, CommentService commentService) {
         this.modsRepository = modsRepository;
+        this.commentService = commentService; // Initialize CommentService
     }
 
     // Method to get reported comments
@@ -34,5 +36,7 @@ public class ModsService {
         // Update the comment in the database
         commentService.updateComment(comment);
     }
+
+    
     
 }

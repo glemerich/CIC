@@ -34,7 +34,7 @@ public class CommentController {
     public String reportComment(@RequestParam("commentId") Long commentId,
                                 @RequestParam("billId") String billId) {
         commentService.reportComment(commentId);
-        return "comment/post-success";
+        return "comment/list-comments";
     }
 
 
