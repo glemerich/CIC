@@ -20,6 +20,15 @@ public class User {
     private String email;
     private String role;
     private Date createdAt;
+    private boolean userReported;
+
+    public boolean isUserReported() {
+        return userReported;
+    }
+
+    public void setUserReported(boolean userReported) {
+        this.userReported = userReported;
+    }
 
     public User() {
     }

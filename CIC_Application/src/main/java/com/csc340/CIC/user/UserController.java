@@ -72,6 +72,22 @@ public String login(@RequestParam("username") String username, @RequestParam("pa
         }
     }
 
+    @PostMapping("/report")
+public String reportUser(@RequestParam("userId") Long userId, Model model) {
+    try {
+        // Call the UserService method to report the user
+        userService.reportUser(userId);
+        
+        // Redirect to a success page or any other page as needed
+        return "redirect:/user/home";
+    } catch (Exception e) {
+        // Log the error message
+        e.printStackTrace();
+        // Redirect to an error page or any other page as needed
+        return "redirect:/user/home?error=true";
+    }
+}
+
     @GetMapping("/home")
     public String homePage() {
         return "bill/all";

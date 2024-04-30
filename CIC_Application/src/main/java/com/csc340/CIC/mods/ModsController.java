@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.csc340.CIC.comment.Comment;
 
@@ -35,9 +36,13 @@ public class ModsController {
 
     @GetMapping("/mod/ignore")
     public String ignoreReportedComment(@RequestParam("commentId") Long commentId) {
-    modsService.ignoreReportedComment(commentId);
-    return "redirect:/mod/all";
-}
+        modsService.ignoreReportedComment(commentId);
+        return "redirect:/mod/all";
+    }
 
-    
+    @PostMapping("/mod/report/user")
+    public String reportUser(@RequestParam("userId") Long userId) {
+        modsService.reportUser(userId);
+        return "redirect:/mod/all";
+    }
 }
