@@ -31,7 +31,7 @@
             <!-- Iterate over each reported comment -->
             <tr th:each="comment : ${reportedComments}">
                 <td th:text="${comment.commentId}"></td>
-                <td th:text="${comment.userId}"></td>
+                <td th:text="${comment.username}"></td>
                 <td th:text="${comment.commentText}"></td>
                 <td>
                     <!-- Form to delete the reported comment -->

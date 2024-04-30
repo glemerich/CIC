@@ -49,7 +49,7 @@ public class PollController {
     return ResponseEntity.ok().build();
     }
     
-    //@PreAuthorize("hasAuthority('ROLE_REPRESENTATIVE')")
+    //@PreAuthorize("hasAuthority('ROLE_representative')")
     @PostMapping("/create")
     public String createPoll(@ModelAttribute("poll") Poll poll, @RequestParam("representativeId") String representativeId, Model model) {
         // Set the representative ID for the new poll

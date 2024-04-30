@@ -44,9 +44,9 @@ public class SecurityConfig {
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/favicon.ico").permitAll()
                 .requestMatchers("/user/register").permitAll()
-                .requestMatchers("/poll/create").hasAuthority("ROLE_REPRESENTATIVE")
-                .requestMatchers("/admin/**").hasRole("admin")
-                .requestMatchers("/mod/**").hasAnyRole("mod", "admin")
+                .requestMatchers("/polls/create").hasAuthority("ROLE_representative")
+                //.requestMatchers("/admin/**").hasRole("admin")
+                //.requestMatchers("/mod/**").hasAnyRole("mod", "admin")
                 .anyRequest().authenticated() 
                 )
                 .formLogin((form) -> form
@@ -79,4 +79,5 @@ public class SecurityConfig {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+    
 }
