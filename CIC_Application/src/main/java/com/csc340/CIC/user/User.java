@@ -1,5 +1,8 @@
 package com.csc340.CIC.user;
 
+<<<<<<< HEAD
+import jakarta.persistence.*;
+=======
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.Date;
+>>>>>>> 893196c1b4f4e1d5a5a538a6c2d518f46f0272fc
 
 @Entity
 @Table(name = "users")
@@ -14,8 +18,28 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    private long userId;
 
+<<<<<<< HEAD
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String role = "user"; // Default role
+
+    private String requestedRole;
+
+    @Column(nullable = false)
+    private String approvalStatus = "pending";
+
+    // Constructors, Getters, and Setters
+=======
     @Column(unique = true)
     private String username;
 
@@ -36,23 +60,16 @@ public class User {
     
     private boolean reported_status;
 
+>>>>>>> 893196c1b4f4e1d5a5a538a6c2d518f46f0272fc
     public User() {
     }
 
-    public User(String username, String password, String email, String role, Date createdAt) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-        this.createdAt = createdAt;
+    public long getUserId() {
+        return userId;
     }
 
-    public long getUser_Id() {
-        return user_id;
-    }
-
-    public void setUser_Id(long user_id) {
-        this.user_id = user_id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -87,12 +104,20 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public String getRequestedRole() {
+        return requestedRole;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setRequestedRole(String requestedRole) {
+        this.requestedRole = requestedRole;
+    }
+
+    public String getApprovalStatus() {
+        return approvalStatus;
+    }
+
+    public void setApprovalStatus(String approvalStatus) {
+        this.approvalStatus = approvalStatus;
     }
 
     public boolean isStatus() {
