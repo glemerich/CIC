@@ -7,11 +7,13 @@ import com.csc340.CIC.user.UserRepository;
 
 @Service
 public class AdminService {
-
+    
+    @Autowired
     private final AdminRepository repository;
+    @Autowired
     private final UserRepository userRepository;
 
-    @Autowired
+    
     public AdminService(AdminRepository repository, UserRepository userRepository) {
         this.repository = repository;
         this.userRepository = userRepository;

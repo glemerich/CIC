@@ -33,7 +33,7 @@ public class CommentService {
     public void reportComment(Long commentId) {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new CommentNotFoundException("Comment not found with id: " + commentId));
-        comment.setCommentReport(true);
+        comment.setReportedStatus(true);
         commentRepository.save(comment);
     }
 

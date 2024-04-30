@@ -5,7 +5,7 @@
         <thead>
             <tr>
                 <th scope="col">Comment Date</th>
-                <th scope="col">UserID</th>
+                <th scope="col">User Name</th>
                 <th scope="col">Comment Text</th>
                 <th scope="col">Report Comment</th>
             </tr>
@@ -13,7 +13,7 @@
         <tbody>
             <tr th:each="comment : ${clist}">
                 <td th:text="${comment.commentDate}"></td>
-                <td th:text="${comment.userId}"></td>
+                <td th:text="${comment.username}"></td>
                 <td th:text="${comment.commentText}"></td>
                 <td>
                     <form action="/comment/report" method="post">

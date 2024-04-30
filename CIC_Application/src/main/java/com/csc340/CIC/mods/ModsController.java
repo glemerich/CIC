@@ -12,10 +12,11 @@ import java.util.List;
 
 @Controller
 public class ModsController {
-
+    
+    @Autowired
     private final ModsService modsService;
 
-    @Autowired
+    
     public ModsController(ModsService modsService){
         this.modsService = modsService;
     }

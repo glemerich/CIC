@@ -23,18 +23,10 @@ public class Representative {
     
     private String biography;
 
-    // Constructors
     public Representative() {
     }
 
-    public Representative(int user_id, String district, String party_affiliation, String biography) {
-        this.user_id = user_id;
-        this.district = district;
-        this.party_affiliation = party_affiliation;
-        this.biography = biography;
-    }
-
-    // Getters and setters
+ 
     public String getId() {
         return id;
     }

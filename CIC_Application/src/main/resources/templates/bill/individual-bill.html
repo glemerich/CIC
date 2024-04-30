@@ -17,47 +17,43 @@
     <!-- Include navbar -->
     <include th:insert="~{other/navbar.html}"></include>
     
-
     <div class="container text-center main-content">
         <h1 class="mt-5"><span th:text="${bill.billNumber + ' - ' + bill.shortTitle}" th:attr="data-bill-number=${bill.billNumber}"></span></h1>
         <hr>
-        <p><strong>Sponsor:</strong> <span th:text="${bill.sponsorName + ' (' + bill.sponsorParty + '-' + bill.sponsorState + ')'}"></span></p>
-        <p><strong>Bill Title:</strong> <span th:text="${bill.title}"></span></p>
-        <p><strong>Introduced Date:</strong> <span th:text="${bill.introducedDate}"></span></p>
-        <p>
-            <strong>Total Cosponsors:</strong>
-            <span th:text="${bill.cosponsors}"></span>;
-            <strong>By Party:</strong>
-            <span th:if="${bill.cosponsorsByParty}">
-                R: <span th:if="${bill.cosponsorsByParty['R']}" th:text="${bill.cosponsorsByParty['R']}"></span>,
-                D: <span th:if="${bill.cosponsorsByParty['D']}" th:text="${bill.cosponsorsByParty['D']}"></span>
-            </span>
-            <span th:unless="${bill.cosponsorsByParty}">
-                None
-            </span>
-        </p>        
-        <p><strong>More Info:</strong> <a th:href="${bill.billUri}" target="_blank">Congress.gov</a></p>
-        <hr>
-
-        <p><strong>Actions:</strong></p>
-        <ul>
-            <li th:each="action : ${bill.actions}" th:text="${action}"></li>
-        </ul>
-
+        <!-- Your bill details -->
     </div>
 
     <!-- New comment form -->
     <form id="comment-form">
-        <textarea id="comment-text"  rows="5" cols="60"  placeholder="Write your comment here..."></textarea>
+        <textarea id="comment-text" rows="5" cols="60" placeholder="Write your comment here..."></textarea>
         <button type="submit">Post Comment</button>
     </form>
     <div id="comment-list"></div>
 
     <!-- JavaScript for handling form submission -->
     <script>
+        var username; 
         document.getElementById("comment-form").style.margin = "100px 50px 50px 75px";
         window.addEventListener("load", () => {
             console.log("the page has loaded");
+            
+            // Using fetch API
+            fetch('/username')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log("Logged-in username:", data);
+                    username = data;
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error fetching username:', error);
+                });
+
             var billNumber = document.querySelector('[data-bill-number]').getAttribute('data-bill-number');
 
             // fetch('/comment/{billId}', {
@@ -81,14 +77,11 @@
         document.getElementById('comment-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Change to userName of user logged in
-            var userID = "1";
-
             var commentText = document.getElementById('comment-text').value;
             var billNumber = document.querySelector('[data-bill-number]').getAttribute('data-bill-number');
             var commentData = {
                 commentText: commentText,
-                userId: userID,
+                username: username,
                 billId: billNumber
             };
             console.log("commentData;", commentData);
