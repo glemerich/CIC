@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/favicon.ico").permitAll()
+                .requestMatchers("/user/register").permitAll()
                 .anyRequest().authenticated() 
                 )
                 .formLogin((form) -> form
