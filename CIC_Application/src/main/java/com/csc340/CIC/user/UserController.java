@@ -65,7 +65,7 @@ public class UserController {
     @GetMapping("/{username}")
     @ResponseBody
     public User getUserByUsername(@PathVariable String username) {
-        return User.loadUserByUsername(username);
+        return userService.getUserByUsername(username);
     }
     
 
