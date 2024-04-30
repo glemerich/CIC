@@ -36,7 +36,8 @@ public class User {
     @Column(name = "approval_status")
     private String approvalStatus;
     
-    private boolean reported_status;
+    @Column(name = "reported_status")
+    private boolean reportedStatus;
 
     public User() {
     }
@@ -113,12 +114,12 @@ public class User {
         this.approvalStatus = approvalStatus;
     }
 
-    public boolean isReported_status() {
-        return reported_status;
+    public boolean isReportedStatus() {
+        return reportedStatus;
     }
 
-    public void setReported_status(boolean reported_status) {
-        this.reported_status = reported_status;
+    public void setReportedStatus(boolean reportedStatus) {
+        this.reportedStatus = reportedStatus;
     }
 
     public Date getCreated_at() {

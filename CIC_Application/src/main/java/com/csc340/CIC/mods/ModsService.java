@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.csc340.CIC.comment.Comment;
 import com.csc340.CIC.comment.CommentService;
+import com.csc340.CIC.user.User;
+import com.csc340.CIC.user.UserService;
 
 import java.util.List;
 
@@ -13,9 +15,13 @@ public class ModsService {
     @Autowired
     private final CommentService commentService;
 
+    @Autowired
+    private final UserService userService;
+
     
-    public ModsService(CommentService commentService) {
+    public ModsService(CommentService commentService, UserService userService) {
         this.commentService = commentService;
+        this.userService = userService;
     }
 
     // Method to get reported comments
@@ -38,5 +44,18 @@ public class ModsService {
         commentService.updateComment(comment);
     }
     
+    public void reportUser(String username) {
+        // Check if the user exists
+        User user = userService.getUserByUsername(username);
+        if (user != null) {
+            
+            user.setReportedStatus(true);
+            
+            // Save the updated user
+            userService.save(user);
+        } else {
+            return;
+        }
+    }
     
 }

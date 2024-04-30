@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.web.client.RestTemplate;
 
@@ -54,13 +55,19 @@ public class SecurityConfig {
                 .permitAll()
                 .defaultSuccessUrl("/bill/all")
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))
-                .logout((logout) -> logout.permitAll())
+                .logout(logout -> logout
+                .logoutUrl("/user/logout")
+                .logoutSuccessUrl("/user/login")
+                //.logoutSuccessHandler(logoutSuccessHandler()) 
+                .permitAll()
+                )
                 .requestCache((cache) -> cache
                 .requestCache(requestCache)
                 )
                 .sessionManagement((sessionManagement) ->
                     sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );
+                
 
         return http.build();
     }
@@ -78,6 +85,11 @@ public class SecurityConfig {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public HttpStatusReturningLogoutSuccessHandler logoutSuccessHandler() {
+        return new HttpStatusReturningLogoutSuccessHandler();
     }
     
 }

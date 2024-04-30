@@ -47,9 +47,17 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
-    public List<User> findPendingUsers() {
+    public List<User> getPendingUsers() {
         // Retrieve users with "pending" approval status
-        return userRepository.findByApprovalStatus("pending");
+        return userRepository.findByApprovalStatusPending();
+    }
+
+    public List<User> getReportedUsers() {
+        return userRepository.findByReportedStatusTrue();
+    }
+
+    public void save(User user) {
+       userRepository.save(user);
     }
 
     //public Optional <User> getUserByUsername(String username) {

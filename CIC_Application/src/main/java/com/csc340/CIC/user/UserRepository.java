@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -11,10 +12,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Method to find a User by username.
     Optional <User> findByUsername(String username);
 
-    // Method to find Users by their approval status.
-    List<User> findByApprovalStatus(String status);
+    @Query("SELECT u FROM User u WHERE u.approvalStatus = 'pending'")
+    List<User> findByApprovalStatusPending();
 
     List<User> findByStatusTrue();
+
+    List<User> findByReportedStatusTrue();
 
     // Method to delete a User by their username.
     @Modifying

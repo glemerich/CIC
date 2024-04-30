@@ -1,12 +1,16 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Other meta tags, title, stylesheets, etc. -->
     <script th:src="@{/js/comment.js}"></script>
 </head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 <body>
 
     <h2 id="header">Comments</h2>
-
     <style>
         .like-button {
         width: 24px; /* Adjust as needed */
@@ -14,7 +18,6 @@
         cursor: pointer;
         }
     </style>
-
     <div class="table-responsive mt-4 mx-4">
         <table class="bills w-100">
             <thead>
@@ -30,8 +33,8 @@
                 <tr th:each="comment : ${clist}">
                     <td th:text="${comment.commentDate}"></td>
                     <td>
-                        <img class="like-button" src="/img/Gray-Thumbs-Up.png" alt="Like" onclick="toggleLike(this)">
-                    </td>
+                        <button class="btn btn-link like-button" onclick="toggleLike(this)">Like</button>
+                    </td> 
                     <td th:text="${comment.username}"></td>
                     <td th:text="${comment.commentText}"></td>
                     <td>
@@ -46,14 +49,5 @@
         </table>
     </div>
 
-    <script>
-        function toggleLike(img) {
-            if (img.src.includes('Gray-Thumbs-Up.png')) {
-                img.src = '/img/Blue-Thumbs-Up.png';
-            } else {
-                img.src = '/img/Gray-Thumbs-Up.png';
-            }
-        }
-    </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <style>
         :root, [data-bs-theme=light] {
-            --bs-nav-pills-link-active-bg: #8f474a; 
+            --bs-nav-pills-link-active-bg: #8f474a;
         }
     </style>
     <link rel="stylesheet" href="/css/Congress.css">
@@ -37,8 +37,8 @@
                     <td th:text="${user.requestedRole}"></td>
                     <td>
                         <!-- Action buttons for approving or denying the user's role request -->
-                        <a th:href="@{'/admin/approve/' + ${user.user_id}}" class="btn btn-success">Approve</a>
-                        <a th:href="@{'/admin/deny/' + ${user.user_id}}" class="btn btn-danger">Deny</a>
+                        <a th:href="@{'/admin/approve/' + ${user.userId}}" class="btn btn-success">Approve</a>
+                        <a th:href="@{'/admin/deny/' + ${user.userId}}" class="btn btn-danger">Deny</a>
                     </td>
                 </tr>
             </tbody>
@@ -52,22 +52,18 @@
                 <tr>
                     <th>User ID</th>
                     <th>Reported User</th>
-                    <th>Reported By</th>
-                    <th>Reason Reported</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Dynamically creating table row for the report -->
-                <tr th:each="report : ${reports}">
-                    <td th:text="${report.reportId}"></td>
-                    <td th:text="${report.reportedUser}"></td>
-                    <td th:text="${report.reportedBy}"></td>
-                    <td th:text="${report.reasonReported}"></td>
+                <tr th:each="user : ${reportedUsers}">
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.username}"></td>
                     <td>
                         <!-- Action buttons for banning or ignoring the reported user -->
-                        <a th:href="@{'/admin/ban/' + ${report.reportId}}" class="btn btn-danger">Ban</a>
-                        <a th:href="@{'/admin/ignore/' + ${report.reportId}}" class="btn btn-secondary">Ignore</a>
+                        <a th:href="@{'/admin/ban/' + ${user.username}}" class="btn btn-danger">Ban</a>
+                        <a th:href="@{'/admin/ignore/' + ${user.username}}" class="btn btn-secondary">Ignore</a>
                     </td>
                 </tr>
             </tbody>
