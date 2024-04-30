@@ -11,8 +11,8 @@ public class Representative {
     @Column(name = "representative_id")
     private String id;
 
-    
-    private int user_id;
+    @Column(name = "user_id")
+    private int userId;
 
     
     private String district;
@@ -35,12 +35,12 @@ public class Representative {
         this.id = id;
     }
 
-    public int getUser_Id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_Id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getDistrict() {

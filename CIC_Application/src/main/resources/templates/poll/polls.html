@@ -5,42 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
+    <script>
+        // Fetch the logged-in username
+        fetch('/username')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log("Logged-in username:", data);
+                    username = data;
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error fetching username:', error);
+                });
+    </script>
+
+    <h1>Polls</h1>
+
+    <!-- Create Poll Form -->
+    <form action="/polls/create" method="post" th:object="${poll}">
+        <div>
+            <label for="pollQuestion">Question:</label>
+            <input type="text" id="pollQuestion" name="pollQuestion" th:field="*{pollQuestion}" required>
+        </div>
+        <div>
+            <label for="pollOption1">Option 1:</label>
+            <input type="text" id="pollOption1" name="pollOption1" th:field="*{pollOption1}" required>
+        </div>
+        <div>
+            <label for="pollOption2">Option 2:</label>
+            <input type="text" id="pollOption2" name="pollOption2" th:field="*{pollOption2}" required>
+        </div>
+        <div>
+            <label for="pollOption3">Option 3:</label>
+            <input type="text" id="pollOption3" name="pollOption3" th:field="*{pollOption3}" required>
+        </div>
+        <div>
+            <label for="pollOption4">Option 4:</label>
+            <input type="text" id="pollOption4" name="pollOption4" th:field="*{pollOption4}" required>
+        </div>
+        <input type="hidden" id="representativeId" name="representativeId" th:value="${representativeId}" />
+        <input type="hidden" id="username" name="username" th:value="${username}" />
+        <button type="submit">Create Poll</button>
+    </form>
+
+    <!-- Existing Polls -->
     <div th:each="poll : ${polls}">
-        <h2 th:text="${poll.pollQuestion}" ></h2>
+        <h2 th:text="${poll.pollQuestion}"></h2>
         <ul>
             <li>
                 <span th:text="${poll.pollOption1}"></span>
-                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=1">Vote</button>
+                <!-- Vote buttons and count -->
+                <button class="vote-btn" th:onclick="'vote(' + ${poll.pollId} + ', 1)'">Vote</button>
                 <span class="vote-count" th:text="${poll.optionVoteCount1}"></span>
             </li>
             <li>
                 <span th:text="${poll.pollOption2}"></span>
-                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=2">Vote</button>
+                <button class="vote-btn" th:onclick="'vote(' + ${poll.pollId} + ', 2)'">Vote</button>
                 <span class="vote-count" th:text="${poll.optionVoteCount2}"></span>
             </li>
             <li>
                 <span th:text="${poll.pollOption3}"></span>
-                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=3">Vote</button>
+                <button class="vote-btn" th:onclick="'vote(' + ${poll.pollId} + ', 3)'">Vote</button>
                 <span class="vote-count" th:text="${poll.optionVoteCount3}"></span>
             </li>
             <li>
                 <span th:text="${poll.pollOption4}"></span>
-                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=4">Vote</button>
+                <button class="vote-btn" th:onclick="'vote(' + ${poll.pollId} + ', 4)'">Vote</button>
                 <span class="vote-count" th:text="${poll.optionVoteCount4}"></span>
             </li>
         </ul>
     </div>
-    
 
+    <!-- JavaScript for handling form submission -->
     <script>
-        Array.from(document.getElementsByClassName('vote-btn')).forEach(button => {
-            button.addEventListener('click', function() {
-                const pollId = this.getAttribute("data-poll-id");
-                const optionIndex = this.getAttribute("data-option-index");
-                vote(pollId, optionIndex);
-            });
-        });
-    
         function vote(pollId, optionIndex) {
             fetch('/polls/vote/' + pollId + '/' + optionIndex, {
                 method: 'POST'
@@ -61,9 +104,5 @@
             });
         }
     </script>
-    
-    
-
-
 </body>
 </html>
