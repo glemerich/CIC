@@ -3,7 +3,6 @@ package com.csc340.CIC.mods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.csc340.CIC.comment.Comment;
-import com.csc340.CIC.comment.CommentRepository;
 import com.csc340.CIC.comment.CommentService;
 
 import java.util.List;
@@ -12,30 +11,30 @@ import java.util.List;
 public class ModsService {
     
     @Autowired
-    private final CommentRepository commentRepository;
+    private final CommentService commentService;
 
     
-    public ModsService(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
+    public ModsService(CommentService commentService) {
+        this.commentService = commentService;
     }
 
     // Method to get reported comments
     public List<Comment> getReportedComments() {
-        return commentRepository.findByReportedStatusTrue();
+        return commentService.findByReportedStatusTrue();
     }
 
     // Method to delete reported comment by ID
     public void deleteByID(long commentID) {
-        commentRepository.deleteById(commentID);
+        commentService.deleteById(commentID);
     }
 
     public void ignoreReportedComment(Long commentId) {
         // Fetch the comment by its ID
-        Comment comment = CommentService.getCommentById(commentId);
+        Comment comment = commentService.getCommentById(commentId);
         // Set the report status to false
         comment.setReportedStatus(false);
         // Update the comment in the database
-        CommentService.updateComment(comment);
+        commentService.updateComment(comment);
     }
     
     

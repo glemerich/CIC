@@ -1,6 +1,8 @@
 package com.csc340.CIC.user;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,15 +20,12 @@ public class UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     public String registerUser(User user) {
-        // Check if the username already exists in the database
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            return "Username already exists";
-        }
 
         // Encode the password and set the user's status based on the role
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRequestedRole(user.getRole()); // Save the requested role
         user.setApprovalStatus("user".equals(user.getRole()) ? "approved" : "pending");
+        user.setStatus(true);
 
         // Save the user in the database
         userRepository.save(user);
@@ -47,5 +46,9 @@ public class UserService implements UserDetailsService {
     public List<User> findPendingUsers() {
         // Retrieve users with "pending" approval status
         return userRepository.findByApprovalStatus("pending");
+    }
+
+    public Optional <User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

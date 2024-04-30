@@ -19,10 +19,4 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                              .body("An unexpected error occurred. Please try again later.");
     }
-
-    @ExceptionHandler(Exception.class)
-    public String handleException(Model model, Exception ex) {
-        model.addAttribute("errorMessage", ex.getMessage());
-        return "error"; // Error page
-    }
 }

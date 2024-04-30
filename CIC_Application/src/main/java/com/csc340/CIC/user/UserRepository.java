@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     // Method to find a User by username.
-    Optional<User> findByUsername(String username);
+    Optional <User> findByUsername(String username);
 
     // Method to find Users by their approval status.
     List<User> findByApprovalStatus(String status);
+
+    List<User> findByStatusTrue();
 
     // Method to delete a User by their username.
     @Modifying

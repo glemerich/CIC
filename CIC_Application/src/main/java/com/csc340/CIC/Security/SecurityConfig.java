@@ -40,6 +40,7 @@ public class SecurityConfig {
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/favicon.ico").permitAll()
+                .requestMatchers("/user/register").permitAll()
                 .requestMatchers("/admin/**").hasRole("admin")
                 .requestMatchers("/mod/**").hasAnyRole("mod", "admin")
                 .anyRequest().authenticated() 

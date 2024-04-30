@@ -35,7 +35,7 @@ public class UserController {
             return "redirect:/bill/all";
         } catch (AuthenticationException e) {
             e.printStackTrace();
-            return "redirect:/user/login?error=true";
+            return "redirect:/user/login";
         }
     }
 
@@ -61,12 +61,12 @@ public class UserController {
         return "bill/all";
     }
 
-    
+    /* 
     @GetMapping("/{username}")
     @ResponseBody
     public User getUserByUsername(@PathVariable String username) {
-        return User.loadUserByUsername(username);
+        return userService.loadUserByUsername(username);
     }
-    
+    */
 
 }

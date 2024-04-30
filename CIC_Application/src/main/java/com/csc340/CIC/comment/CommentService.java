@@ -51,4 +51,12 @@ public class CommentService {
             return "Comment not found with id: " + comment.getCommentId();
         }
     }
+
+    public List <Comment> findByReportedStatusTrue(){
+        return commentRepository.findByReportedStatusTrue();
+    }
+
+    public void deleteById(long commentID) {
+        commentRepository.deleteById(commentID);
+    }
 }

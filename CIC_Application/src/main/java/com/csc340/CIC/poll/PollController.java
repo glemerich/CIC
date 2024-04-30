@@ -7,10 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.csc340.CIC.representative.*;
+import com.csc340.CIC.user.User;
 import com.csc340.CIC.user.UserService;
 
-import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/polls")
@@ -52,7 +53,8 @@ public class PollController {
         // Set the representative ID for the new poll
         poll.setRepresentativeId(representativeId);
         
-        var userId = userService.getUserByUsername(username).getUser_Id();
+        Optional <User> user = userService.getUserByUsername(username);
+        Long userId = user.isPresent() ? user.get().getUserId() : null;
         Representative representative = representativeService.getRepresentativeByUserId(userId);
         var repId = representative.getId();
 

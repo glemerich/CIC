@@ -14,6 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private long userId;
 
     @Column(unique = true)
@@ -26,13 +27,14 @@ public class User {
 
     private String role;
 
-    private Date createdAt;
+    private Date created_at;
 
     private boolean status;
 
     private String requested_role;
 
-    private String approval_status;
+    @Column(name = "approval_status")
+    private String approvalStatus;
     
     private boolean reported_status;
 
@@ -87,14 +89,6 @@ public class User {
         this.requested_role = requestedRole;
     }
 
-    public String getApprovalStatus() {
-        return approval_status;
-    }
-
-    public void setApprovalStatus(String approvalStatus) {
-        this.approval_status = approvalStatus;
-    }
-
     public boolean isStatus() {
         return status;
     }
@@ -111,12 +105,12 @@ public class User {
         this.requested_role = requested_role;
     }
 
-    public String getApproval_status() {
-        return approval_status;
+    public String getApprovalStatus() {
+        return approvalStatus;
     }
 
-    public void setApproval_status(String approval_status) {
-        this.approval_status = approval_status;
+    public void setApprovalStatus(String approvalStatus) {
+        this.approvalStatus = approvalStatus;
     }
 
     public boolean isReported_status() {
@@ -125,6 +119,14 @@ public class User {
 
     public void setReported_status(boolean reported_status) {
         this.reported_status = reported_status;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }
 
