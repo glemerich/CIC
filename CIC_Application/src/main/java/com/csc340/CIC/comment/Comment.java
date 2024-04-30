@@ -31,6 +31,9 @@ public class Comment {
     @Column(name = "reported_status")
     private boolean reportedStatus;
 
+    @Column(name = "comment_liked")
+    private boolean liked;
+
     public Comment() {
         // Default constructor
     }

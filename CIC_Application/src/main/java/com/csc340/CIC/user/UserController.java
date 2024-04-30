@@ -60,15 +60,13 @@ public class UserController {
     public String homePage() {
         return "bill/all";
     }
-<<<<<<< HEAD
-=======
 
+    
     @GetMapping("/{username}")
     @ResponseBody
     public User getUserByUsername(@PathVariable String username) {
-        return userService.getUserByUsername(username);
+        return User.loadUserByUsername(username);
     }
+    
 
-
->>>>>>> 893196c1b4f4e1d5a5a538a6c2d518f46f0272fc
 }

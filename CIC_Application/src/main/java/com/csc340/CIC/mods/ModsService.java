@@ -4,28 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.csc340.CIC.comment.Comment;
 import com.csc340.CIC.comment.CommentRepository;
+import com.csc340.CIC.comment.CommentService;
 
 import java.util.List;
 
 @Service
 public class ModsService {
     
-<<<<<<< HEAD
-    private final ModsRepository modsRepository;
-    private final CommentService commentService; // Inject CommentService
-
-    @Autowired
-    public ModsService(ModsRepository modsRepository, CommentService commentService) {
-        this.modsRepository = modsRepository;
-        this.commentService = commentService; // Initialize CommentService
-=======
     @Autowired
     private final CommentRepository commentRepository;
 
     
     public ModsService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
->>>>>>> 893196c1b4f4e1d5a5a538a6c2d518f46f0272fc
     }
 
     // Method to get reported comments
@@ -40,13 +31,12 @@ public class ModsService {
 
     public void ignoreReportedComment(Long commentId) {
         // Fetch the comment by its ID
-        Comment comment = commentService.getCommentById(commentId);
+        Comment comment = CommentService.getCommentById(commentId);
         // Set the report status to false
-        comment.setCommentReport(false);
+        comment.setReportedStatus(false);
         // Update the comment in the database
-        commentService.updateComment(comment);
+        CommentService.updateComment(comment);
     }
-
     
     
 }

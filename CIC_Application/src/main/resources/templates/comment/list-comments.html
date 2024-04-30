@@ -1,29 +1,59 @@
-<h2 id="header">Comments</h2>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Other meta tags, title, stylesheets, etc. -->
+    <script th:src="@{/js/comment.js}"></script>
+</head>
+<body>
 
-<div class="table-responsive mt-4 mx-4">
-    <table class="bills w-100">
-        <thead>
-            <tr>
-                <th scope="col">Comment Date</th>
-                <th scope="col">User Name</th>
-                <th scope="col">Comment Text</th>
-                <th scope="col">Report Comment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="comment : ${clist}">
-                <td th:text="${comment.commentDate}"></td>
-                <td th:text="${comment.username}"></td>
-                <td th:text="${comment.commentText}"></td>
-                <td>
-                    <form action="/comment/report" method="post">
-                        <input type="hidden" name="billId" th:value="${T(com.csc340.CIC.comment.BillIdFormatter).formatBillId(comment.billId)}" />
-                        <input type="hidden" name="commentId" th:value="${comment.commentId}" />
-                        <button type="submit">Report</button>
-                    </form>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <h2 id="header">Comments</h2>
+
+    <style>
+        .like-button {
+        width: 24px; /* Adjust as needed */
+        height: 24px; /* Adjust as needed */
+        cursor: pointer;
+        }
+    </style>
+
+    <div class="table-responsive mt-4 mx-4">
+        <table class="bills w-100">
+            <thead>
+                <tr>
+                    <th scope="col">Comment Date</th>
+                    <th scope="col">Likes</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Comment Text</th>
+                    <th scope="col">Report Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="comment : ${clist}">
+                    <td th:text="${comment.commentDate}"></td>
+                    <td>
+                        <img class="like-button" src="/img/Gray-Thumbs-Up.png" alt="Like" onclick="toggleLike(this)">
+                    </td>
+                    <td th:text="${comment.username}"></td>
+                    <td th:text="${comment.commentText}"></td>
+                    <td>
+                        <form action="/comment/report" method="post">
+                            <input type="hidden" name="billId" th:value="${T(com.csc340.CIC.comment.BillIdFormatter).formatBillId(comment.billId)}" />
+                            <input type="hidden" name="commentId" th:value="${comment.commentId}" />
+                            <button type="submit">Report</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function toggleLike(img) {
+            if (img.src.includes('Gray-Thumbs-Up.png')) {
+                img.src = '/img/Blue-Thumbs-Up.png';
+            } else {
+                img.src = '/img/Gray-Thumbs-Up.png';
+            }
+        }
+    </script>
+</body>
+</html>

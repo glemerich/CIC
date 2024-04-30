@@ -1,8 +1,5 @@
 package com.csc340.CIC.user;
 
-<<<<<<< HEAD
-import jakarta.persistence.*;
-=======
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.util.Date;
->>>>>>> 893196c1b4f4e1d5a5a538a6c2d518f46f0272fc
 
 @Entity
 @Table(name = "users")
@@ -20,26 +16,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
-<<<<<<< HEAD
-    @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String role = "user"; // Default role
-
-    private String requestedRole;
-
-    @Column(nullable = false)
-    private String approvalStatus = "pending";
-
-    // Constructors, Getters, and Setters
-=======
     @Column(unique = true)
     private String username;
 
@@ -60,7 +36,6 @@ public class User {
     
     private boolean reported_status;
 
->>>>>>> 893196c1b4f4e1d5a5a538a6c2d518f46f0272fc
     public User() {
     }
 
@@ -105,19 +80,19 @@ public class User {
     }
 
     public String getRequestedRole() {
-        return requestedRole;
+        return requested_role;
     }
 
     public void setRequestedRole(String requestedRole) {
-        this.requestedRole = requestedRole;
+        this.requested_role = requestedRole;
     }
 
     public String getApprovalStatus() {
-        return approvalStatus;
+        return approval_status;
     }
 
     public void setApprovalStatus(String approvalStatus) {
-        this.approvalStatus = approvalStatus;
+        this.approval_status = approvalStatus;
     }
 
     public boolean isStatus() {
