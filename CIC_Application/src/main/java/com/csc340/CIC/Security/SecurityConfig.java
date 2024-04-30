@@ -6,6 +6,7 @@ import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -14,9 +15,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
@@ -41,6 +44,7 @@ public class SecurityConfig {
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/favicon.ico").permitAll()
                 .requestMatchers("/user/register").permitAll()
+                .requestMatchers("/poll/create").hasAuthority("ROLE_REPRESENTATIVE")
                 .requestMatchers("/admin/**").hasRole("admin")
                 .requestMatchers("/mod/**").hasAnyRole("mod", "admin")
                 .anyRequest().authenticated() 
@@ -69,5 +73,10 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManagerBean() {
         return new CustomAuthenticationManager(userDetailsService, passwordEncoder());
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

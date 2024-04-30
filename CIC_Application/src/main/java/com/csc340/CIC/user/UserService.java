@@ -1,7 +1,6 @@
 package com.csc340.CIC.user;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,7 +52,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByApprovalStatus("pending");
     }
 
-    public Optional <User> getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
+    //public Optional <User> getUserByUsername(String username) {
+      //  return userRepository.findByUsername(username);
+    //}
 }

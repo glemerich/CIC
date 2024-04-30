@@ -6,12 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.csc340.CIC.representative.*;
-import com.csc340.CIC.user.User;
-import com.csc340.CIC.user.UserService;
-
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/polls")
@@ -20,25 +15,31 @@ public class PollController {
     @Autowired
     private final PollService pollService;
 
-    @Autowired
-    private final UserService userService;
+//    @Autowired
+  //  private final UserService userService;
 
-    @Autowired 
-    private final RepresentativeService representativeService;
+    //@Autowired 
+    //private final RepresentativeService representativeService;
+
+    //@Autowired
+    //private final RestTemplate restTemplate;
    
-    public PollController(PollService pollService, UserService userService, RepresentativeService representativeService){
+    public PollController(PollService pollService){
         this.pollService = pollService;
-        this.userService = userService;
-        this.representativeService = representativeService;
+        //this.userService = userService;
+        //this.representativeService = representativeService;
+        //this.restTemplate = restTemplate;
     }
 
     // Endpoint to display all polls for a representative
     @GetMapping("/all/{representativeId}")
     public String getAllPollsForRepresentative(@PathVariable String representativeId, Model model) {
+        //String username = restTemplate.getForObject("http://localhost:8080/username", String.class);
         List<Poll> polls = pollService.getAllPollsForRepresentative(representativeId);
         model.addAttribute("polls", polls);
         model.addAttribute("poll", new Poll());
         model.addAttribute("representativeId", representativeId);
+        //model.addAttribute("username", username);
         return "poll/polls"; 
     }
 
@@ -47,24 +48,25 @@ public class PollController {
     pollService.voteForOption(pollId, optionIndex);
     return ResponseEntity.ok().build();
     }
-
+    
+    //@PreAuthorize("hasAuthority('ROLE_REPRESENTATIVE')")
     @PostMapping("/create")
-    public String createPoll(@ModelAttribute("poll") Poll poll, @RequestParam("representativeId") String representativeId, Model model, @RequestParam("username") String username) {
+    public String createPoll(@ModelAttribute("poll") Poll poll, @RequestParam("representativeId") String representativeId, Model model) {
         // Set the representative ID for the new poll
         poll.setRepresentativeId(representativeId); 
         
-        Optional <User> user = userService.getUserByUsername(username);
-        Long userId = user.isPresent() ? user.get().getUserId() : null;
-        Representative representative = representativeService.getRepresentativeByUserId(userId);
-        var repId = representative.getId();
+        //User user = userService.getUserByUsername(username);
+        //Long userId = user.getUserId();
+        //Representative representative = representativeService.getRepresentativeByUserId(userId);
+        //var repId = representative.getId();
 
-        if (repId == representativeId){
+        //if (repId == representativeId){
             // Create the new poll
             pollService.createPoll(poll);
-        }
-        else{
-            model.addAttribute("errorMessage", "You are not authorized to create a poll for this representative.");
-        }
+        //}
+        //else{
+         //   model.addAttribute("errorMessage", "You are not authorized to create a poll for this representative.");
+        //}
 
         // Redirect back to the page displaying all polls
         return "redirect:/representative/" + representativeId;

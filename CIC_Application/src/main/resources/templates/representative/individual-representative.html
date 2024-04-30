@@ -19,10 +19,26 @@
     <div class="container text-center main-content">
         <h1 class="mt-5" th:text="${representative.firstName} + ' ' + ${representative.lastName}"></h1>
         <p class="mt-5" th:text="${representative.biography}" th:attr="data-rep-id=${representative.id}"></p>
+         <!-- Edit Bio button -->
+         <button id="editBioBtn" class="btn btn-primary">Edit Bio</button>
         <hr>
 
-        <!-- Edit Bio button -->
-        <button id="editBioBtn" class="btn btn-primary">Edit Bio</button>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Personal Details</h2>
+                <p><strong>Party:</strong> <span th:text="${representative.party}"></span></p>
+                <p><strong>Leadership Role:</strong> <span th:text="${representative.leadershipRole}"></span></p>
+                <p><strong>Next Election:</strong> <span th:text="${representative.nextElection}"></span></p>
+            </div>
+            <div class="col-md-6">
+                <h2>Government Details</h2>
+                <p><strong>Chamber:</strong> <span th:text="${representative.chamber}"></span></p>
+                <p><strong>State:</strong> <span th:text="${representative.state}"></span></p>
+                <p><strong>District:</strong> <span th:text="${representative.district}"></span></p>
+            </div>
+        </div>
+
+       
         
         <!-- Biography form -->
         <form id="biographyForm" method="post" style="display: none;">
