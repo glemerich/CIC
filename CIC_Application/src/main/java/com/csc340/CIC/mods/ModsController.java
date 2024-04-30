@@ -33,5 +33,9 @@ public class ModsController {
         return "redirect:/mod/all";
     }
 
-    
+    @GetMapping("/mod/ignore")
+    public String ignoreReportedComment(@RequestParam("commentId") Long commentId) {
+    modsService.ignoreReportedComment(commentId);
+    return "redirect:/mod/all";
+}
 }

@@ -10,10 +10,12 @@ import java.util.List;
 public class ModsService {
     
     private final ModsRepository modsRepository;
+    private final CommentService commentService; // Inject CommentService
 
     @Autowired
-    public ModsService(ModsRepository modsRepository) {
+    public ModsService(ModsRepository modsRepository, CommentService commentService) {
         this.modsRepository = modsRepository;
+        this.commentService = commentService; // Initialize CommentService
     }
 
     // Method to get reported comments
@@ -24,6 +26,15 @@ public class ModsService {
     // Method to delete reported comment by ID
     public void deleteByID(long commentID) {
         modsRepository.deleteById(commentID);
+    }
+
+    public void ignoreReportedComment(Long commentId) {
+        // Fetch the comment by its ID
+        Comment comment = commentService.getCommentById(commentId);
+        // Set the report status to false
+        comment.setCommentReport(false);
+        // Update the comment in the database
+        commentService.updateComment(comment);
     }
 
     
