@@ -15,7 +15,7 @@ public class CommentService {
 
     }
 
-    public String addComment(String userId, String billId, String commentText) {
+    public String addComment(String username, String billId, String commentText) {
 
         return "";
     }

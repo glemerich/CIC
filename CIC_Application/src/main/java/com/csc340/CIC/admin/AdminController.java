@@ -9,10 +9,11 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-
+    
+    @Autowired
     private final AdminService service;
 
-    @Autowired
+    
     public AdminController(AdminService service) {
         this.service = service;
     }

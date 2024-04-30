@@ -77,4 +77,11 @@ public String login(@RequestParam("username") String username, @RequestParam("pa
         return "bill/all";
     }
 
+    @GetMapping("/{username}")
+    @ResponseBody
+    public User getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
+    }
+
+
 }

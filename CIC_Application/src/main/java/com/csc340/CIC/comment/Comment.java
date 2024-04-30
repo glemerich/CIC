@@ -19,8 +19,8 @@ public class Comment {
     @Column(name = "comment_text", nullable = false)
     private String commentText;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "username", nullable = false)
+    private String username;
 
     @Column(name = "bill_id", nullable = false)
     private String billId;
@@ -28,7 +28,10 @@ public class Comment {
     @Column(name = "comment_date", nullable = false)
     private Date commentDate;
 
-    public Comment(){
+    @Column(name = "reported_status")
+    private boolean reportedStatus;
+
+    public Comment() {
 
     }
 
@@ -48,12 +51,12 @@ public class Comment {
         this.commentText = commentText;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getusername() {
+        return username;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setusername(String username) {
+        this.username = username;
     }
 
     public String getBillId() {
@@ -63,7 +66,7 @@ public class Comment {
     public void setBillId(String billId) {
         this.billId = billId;
     }
-    
+
     public Date getCommentDate() {
         return commentDate;
     }
@@ -72,11 +75,19 @@ public class Comment {
         this.commentDate = commentDate;
     }
 
+    public boolean getReportedStatus() {
+        return reportedStatus;
+    }
+
+    public void setReportedStatus(boolean reportedStatus){
+        this.reportedStatus = reportedStatus;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n\tcommentId: ").append(commentId).append("\n\t");
         sb.append("billId: ").append(billId).append("\n\t");
-        sb.append("userId: ").append(userId).append("\n\t");
+        sb.append("username: ").append(username).append("\n\t");
         sb.append("commentText: ").append(commentText).append("\n\t");
         sb.append("commentDate: ").append(commentDate).append("\n");
         sb.append("}");

@@ -18,7 +18,7 @@
 
     <div class="container text-center main-content">
         <h1 class="mt-5" th:text="${representative.firstName} + ' ' + ${representative.lastName}"></h1>
-        <p class="mt-5" th:text="${representative.biography}"></p>
+        <p class="mt-5" th:text="${representative.biography}" th:attr="data-rep-id=${representative.id}"></p>
         <hr>
 
         <!-- Edit Bio button -->
@@ -33,6 +33,31 @@
             <button type="submit" class="btn btn-primary">Save</button>
         </form>        
         <hr>
+
+        <h2>Polls</h2>
+
+        <div id="polls-container"></div>
+
+        
+    <script>
+        window.addEventListener("load", () => {
+            
+            var representativeId = document.querySelector('[data-rep-id]').getAttribute('data-rep-id');
+
+            fetch('/polls/all/' + representativeId, {
+                method: 'GET'
+            })
+            .then(response => {
+                return response.text();
+            })
+            .then(htmlFrag => {
+                document.getElementById("polls-container").innerHTML = htmlFrag;
+            })
+            .catch(error => {
+                console.error('Error fetching polls:', error);
+            });
+        });
+    </script>
 
         <!-- Sponsored Bills Section 
         <h2>Cosponsored Bills</h2>

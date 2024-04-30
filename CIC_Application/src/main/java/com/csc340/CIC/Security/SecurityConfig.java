@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -33,16 +34,25 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                 .dispatcherTypeMatchers(DispatcherType.FORWARD,
                         DispatcherType.ERROR).permitAll()
-                //.anyMatchers("/bill").authenticated() // Secure /bill/all endpoint
-                .anyRequest().permitAll() // Allow access endpoints without authentication
+
+                //.requestMatchers("/other/").permitAll()
+                .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/img/**").permitAll()
+                .requestMatchers("/js/**").permitAll()
+                .requestMatchers("/favicon.ico").permitAll()
+                .anyRequest().authenticated() 
                 )
                 .formLogin((form) -> form
-                .loginPage("/login")
+                .loginPage("/user/login")
                 .permitAll()
+                .defaultSuccessUrl("/bill/all")
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))
                 .logout((logout) -> logout.permitAll())
                 .requestCache((cache) -> cache
                 .requestCache(requestCache)
+                )
+                .sessionManagement((sessionManagement) ->
+                    sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 );
 
         return http.build();

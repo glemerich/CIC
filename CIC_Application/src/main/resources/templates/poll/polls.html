@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div th:each="poll : ${polls}">
+        <h2 th:text="${poll.pollQuestion}" ></h2>
+        <ul>
+            <li>
+                <span th:text="${poll.pollOption1}"></span>
+                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=1">Vote</button>
+                <span class="vote-count" th:text="${poll.optionVoteCount1}"></span>
+            </li>
+            <li>
+                <span th:text="${poll.pollOption2}"></span>
+                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=2">Vote</button>
+                <span class="vote-count" th:text="${poll.optionVoteCount2}"></span>
+            </li>
+            <li>
+                <span th:text="${poll.pollOption3}"></span>
+                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=3">Vote</button>
+                <span class="vote-count" th:text="${poll.optionVoteCount3}"></span>
+            </li>
+            <li>
+                <span th:text="${poll.pollOption4}"></span>
+                <button class="vote-btn" th:attr="data-poll-id=${poll.pollId}, data-option-index=4">Vote</button>
+                <span class="vote-count" th:text="${poll.optionVoteCount4}"></span>
+            </li>
+        </ul>
+    </div>
+    
+
+    <script>
+        Array.from(document.getElementsByClassName('vote-btn')).forEach(button => {
+            button.addEventListener('click', function() {
+                const pollId = this.getAttribute("data-poll-id");
+                const optionIndex = this.getAttribute("data-option-index");
+                vote(pollId, optionIndex);
+            });
+        });
+    
+        function vote(pollId, optionIndex) {
+            fetch('/polls/vote/' + pollId + '/' + optionIndex, {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                }
+                throw new Error('Failed to vote');
+            })
+            .then(data => {
+                // Update the vote count on the page
+                const voteCountElement = document.querySelector(`.vote-count[data-poll-id="${pollId}"][data-option-index="${optionIndex}"]`);
+                voteCountElement.textContent = data;
+            })
+            .catch(error => {
+                console.error('Vote failed:', error);
+            });
+        }
+    </script>
+    
+    
+
+
+</body>
+</html>
