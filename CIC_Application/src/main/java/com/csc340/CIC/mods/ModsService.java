@@ -28,6 +28,7 @@ public class ModsService {
         commentService.deleteById(commentID);
     }
 
+    
     public void ignoreReportedComment(Long commentId) {
         // Fetch the comment by its ID
         Comment comment = commentService.getCommentById(commentId);

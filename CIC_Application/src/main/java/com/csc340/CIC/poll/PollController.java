@@ -51,7 +51,7 @@ public class PollController {
     @PostMapping("/create")
     public String createPoll(@ModelAttribute("poll") Poll poll, @RequestParam("representativeId") String representativeId, Model model, @RequestParam("username") String username) {
         // Set the representative ID for the new poll
-        poll.setRepresentativeId(representativeId);
+        poll.setRepresentativeId(representativeId); 
         
         Optional <User> user = userService.getUserByUsername(username);
         Long userId = user.isPresent() ? user.get().getUserId() : null;
@@ -69,7 +69,6 @@ public class PollController {
         // Redirect back to the page displaying all polls
         return "redirect:/representative/" + representativeId;
     }
-
 
     @PostMapping("/delete/{pollId}")
     public ResponseEntity<?> deletePoll(@PathVariable int pollId) {
