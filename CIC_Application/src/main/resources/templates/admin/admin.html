@@ -13,9 +13,37 @@
     <link rel="stylesheet" href="/css/Congress.css">
 </head>
 <body>
-    
     <!-- Included navigation bar from other html file -->
     <include th:insert="~{other/navbar.html}"></include>
+
+    <div class="container mt-5">
+        <h1>Pending Role Approvals</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Requested Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamically creating table row for each pending user -->
+                <tr th:each="user : ${pendingUsers}">
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.requestedRole}"></td>
+                    <td>
+                        <!-- Action buttons for approving or denying the user's role request -->
+                        <a th:href="@{'/admin/approve/' + ${user.user_id}}" class="btn btn-success">Approve</a>
+                        <a th:href="@{'/admin/deny/' + ${user.user_id}}" class="btn btn-danger">Deny</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="container">
         <h1 class="mt-5">Reported Users</h1>
