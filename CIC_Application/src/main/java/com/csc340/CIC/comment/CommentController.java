@@ -1,9 +1,10 @@
 package com.csc340.CIC.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.List;
@@ -16,33 +17,30 @@ public class CommentController {
     private CommentService commentService;
 
     @GetMapping("/{pBillId}")
-    public String getBillComments(@PathVariable String pBillId, Model pModel) {
-        System.out.println("get comments..."+ pBillId);
-        System.out.println("model: "+ pBillId);
-
-        List<Comment> clist = commentService.getComments(pBillId);
+    public String getBillComments(@PathVariable String pBillId, Model pModel,
+                                  @ModelAttribute("successMessage") String successMessage) {
+        List<Comment> clist = commentService.getComments(pBillId); // Use the original bill ID from path variable
         pModel.addAttribute("clist", clist);
-
-        System.out.println(clist);
-
+        if (successMessage != null && !successMessage.isEmpty()) {
+            pModel.addAttribute("successMessage", successMessage);
+        }
         return "comment/list-comments";
     }
 
     @PostMapping("/post")
     public String postComment(@RequestBody Comment comment) {
-        System.out.println(comment);
-
-        // Set comment date
         comment.setCommentDate(new Date());
-
-        System.out.println(comment);
-        // Save the comment to the database
         String response = commentService.addComment(comment);
-        if (response == "failure") {
-            return "comment/post-failure";
-        }
-        else {
-            return "comment/post-success";
-        }
+        return response.equals("failure") ? "comment/post-failure" : "comment/post-success";
     }
-}    
+
+    @PostMapping("/report")
+    public String reportComment(@RequestParam("commentId") Long commentId,
+                                @RequestParam("billId") String billId,
+                                RedirectAttributes redirectAttributes) {
+        commentService.reportComment(commentId);
+        redirectAttributes.addFlashAttribute("successMessage", "Comment reported successfully");
+        String formattedBillId = BillIdFormatter.formatBillId(billId); // Format the billId only for redirection URL
+        return "redirect:/bill/" + formattedBillId;
+    }
+}

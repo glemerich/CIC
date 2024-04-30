@@ -32,8 +32,10 @@ public class Comment {
     private boolean reportedStatus;
 
     public Comment() {
-
+        // Default constructor
     }
+
+    // Getters and setters for all fields
 
     public Long getCommentId() {
         return commentId;
@@ -66,6 +68,7 @@ public class Comment {
     public void setBillId(String billId) {
         this.billId = billId;
     }
+
 
     public Date getCommentDate() {
         return commentDate;

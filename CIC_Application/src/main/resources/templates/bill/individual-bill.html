@@ -100,7 +100,7 @@
                 // Clear textarea after posting comment
                 document.getElementById('comment-text').value = '';
 
-                // fetch('/comment/{billId}', {
+                // fetch('/comment/{billId}', {     //hr12334 H.R.123
                 fetch('/comment/' + billNumber, {
                 method: 'GET'
                 })
