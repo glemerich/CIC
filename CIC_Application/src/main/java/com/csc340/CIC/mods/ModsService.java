@@ -45,9 +45,22 @@ public class ModsService {
         commentService.updateComment(comment);
     }
 
+    public void reportUser(Long userId) {
+        // Check if the user exists
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            
+            // Set the user's reported flag to true
+            user.setUserReported(true);
+            
+            // Save the updated user
+            userRepository.save(user);
+        } else {
+            // Handle the case where the user does not exist
+            throw new UserNotFoundException("User not found with id: " + userId);
+        }
+    }
 
-    
 
-    
-    
 }

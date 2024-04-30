@@ -29,6 +29,7 @@ public class User {
     public void setUserReported(boolean userReported) {
         this.userReported = userReported;
     }
+    
 
     public User() {
     }
