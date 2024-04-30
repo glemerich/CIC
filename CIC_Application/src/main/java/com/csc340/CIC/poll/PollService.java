@@ -50,6 +50,15 @@ public class PollService {
         }
     }
 
+    public void createPoll(Poll poll) {
+        // Set any default values or validations before saving the poll
+        pollRepository.save(poll);
+    }
+    
+    public void deletePoll(int pollId) {
+        pollRepository.deleteById(pollId);
+    }
+
     // Method to retrieve a specific poll by ID
     public Poll getPollById(int pollId) {
         return pollRepository.findById(pollId)

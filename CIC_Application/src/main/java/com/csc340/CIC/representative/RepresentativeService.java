@@ -166,6 +166,10 @@ public class RepresentativeService {
         return representativeRepository.findById(id);
     }
 
+    public Representative getRepresentativeByUserId(Long userId){
+        return representativeRepository.findByUserId(userId);
+    }
+
     public Representative saveRepresentative(Representative representative) {
         return representativeRepository.save(representative);
     }
